@@ -3,6 +3,7 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
 
 interface Props extends Widget {
   title?: string;
@@ -25,27 +26,66 @@ const {
 } = Astro.props;
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <div
-    class="max-w-3xl mx-auto text-center p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600"
-  >
-    <Headline
-      title={title}
-      subtitle={subtitle}
-      tagline={tagline}
-      classes={{
-        container: 'mb-0 md:mb-0',
-        title: 'text-4xl md:text-4xl font-bold tracking-tighter mb-4 font-heading',
-        subtitle: 'text-xl text-muted dark:text-slate-400',
-      }}
-    />
+<section
+  class="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 text-white py-16 md:py-20 overflow-hidden"
+>
+  <!-- Background Elements -->
+  <div class="absolute inset-0 opacity-20">
+    <!-- Diagonal stripes pattern -->
+    <div
+      class="absolute inset-0"
+      style="background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);"
+    >
+    </div>
+  </div>
+
+  <!-- Floating elements for visual interest -->
+  <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+  <div class="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+  <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white/10 rounded-full blur-lg"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+    {
+      tagline && (
+        <p
+          class="text-orange-100 font-bold tracking-widest uppercase text-sm mb-4 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          set:html={tagline}
+        />
+      )
+    }
+
+    {
+      title && (
+        <h2
+          class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-white intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          set:html={title}
+        />
+      )
+    }
+
+    {
+      subtitle && (
+        <p
+          class="text-xl md:text-2xl text-orange-100 mb-8 max-w-4xl mx-auto font-medium leading-relaxed intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+          set:html={subtitle}
+        />
+      )
+    }
+
     {
       actions && (
-        <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 mt-6">
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
           {Array.isArray(actions) ? (
-            actions.map((action) => (
-              <div class="flex w-full sm:w-auto">
-                <Button {...(action || {})} class="w-full sm:mb-0" />
+            actions.map((action, index) => (
+              <div class="w-full sm:w-auto">
+                <Button
+                  {...(action || {})}
+                  class={`w-full sm:w-auto text-lg px-10 py-5 font-bold shadow-2xl ${
+                    index === 0
+                      ? 'bg-white hover:bg-gray-100 text-orange-600 border-white hover:border-gray-100 transform hover:scale-105 transition-all duration-300'
+                      : 'bg-transparent hover:bg-white/10 text-white border-white hover:border-white/80 transform hover:scale-105 transition-all duration-300'
+                  }`}
+                />
               </div>
             ))
           ) : (
@@ -54,5 +94,23 @@ const {
         </div>
       )
     }
+
+    <!-- Extra visual emphasis -->
+    <div class="mt-12 flex justify-center items-center space-x-8 text-orange-100 opacity-80">
+      <div class="flex items-center space-x-2">
+        <Icon name="tabler:phone" class="w-5 h-5" />
+        <span class="text-sm font-medium">Call Today</span>
+      </div>
+      <div class="w-px h-6 bg-orange-200"></div>
+      <div class="flex items-center space-x-2">
+        <Icon name="tabler:clock" class="w-5 h-5" />
+        <span class="text-sm font-medium">Fast Response</span>
+      </div>
+      <div class="w-px h-6 bg-orange-200"></div>
+      <div class="flex items-center space-x-2">
+        <Icon name="tabler:shield-check" class="w-5 h-5" />
+        <span class="text-sm font-medium">Guaranteed</span>
+      </div>
+    </div>
   </div>
-</WidgetWrapper>
+</section>

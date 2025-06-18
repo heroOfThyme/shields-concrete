@@ -2,15 +2,13 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
 import Stats from '~/components/widgets/Stats.astro';
+import Content from '~/components/widgets/Content.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import ExpandableServices from '~/components/widgets/ExpandableServices.astro';
+import SimpleGallery from '~/components/widgets/SimpleGallery.astro';
+import ShieldsContact from '~/components/widgets/ShieldsContact.astro';
 
 const metadata = {
   title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
@@ -20,310 +18,194 @@ const metadata = {
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
-
   <Hero
+    tagline="Windsor's Premier"
+    title="SHIELDS<br/>CONCRETE"
+    subtitle="Professional driveways, patios & foundations built to last"
     actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
+      { variant: 'primary', text: 'Get Free Quote', href: '#contact' },
+      { variant: 'secondary', text: 'Call (226) 350-4642', href: 'tel:2263504642' },
     ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
-  >
-    <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white"> Astro 5.0</span> + Tailwind CSS
-    </Fragment>
+    image={{
+      src: '~/assets/images/concrete-driveway.jpg',
+      alt: 'Beautiful concrete driveway by Shields Concrete',
+    }}
+  />
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 5.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
-    </Fragment>
-  </Hero>
-
-  <!-- Note Widget ******************* -->
-
-  <Note title="Philosophy:" description="Simplicity, Best Practices and High Performance" />
-
-  <!-- Features Widget *************** -->
-
-  <Features
-    id="features"
-    tagline="Features"
-    title="What you get with AstroWind"
-    subtitle="One of the most professional and comprehensive templates currently on the market. Most starred & forked Astro theme in 2022, 2023 and 2024."
-    items={[
-      {
-        title: 'Astro + Tailwind CSS Integration',
-        description:
-          'A seamless integration between two great frameworks that offer high productivity, performance and versatility.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Ready-to-use Components',
-        description:
-          'Widgets made with Tailwind CSS ready to be used in Marketing Websites, SaaS, Blogs, Personal Profiles, Small Business...',
-        icon: 'tabler:components',
-      },
-      {
-        title: 'Best Practices',
-        description:
-          'Creating secure, efficient, and user-friendly websites that deliver exceptional experiences and lasting value.',
-        icon: 'tabler:list-check',
-      },
-      {
-        title: 'Excellent Page Speed',
-        description:
-          'Having a good page speed impacts organic search ranking, improves user experience (UI/UX) and increase conversion rates.',
-        icon: 'tabler:rocket',
-      },
-      {
-        title: 'Search Engine Optimization (SEO)',
-        description:
-          "SEO lies in its ability to enhance a website's visibility, driving organic traffic and enabling it to reach a wider audience.",
-        icon: 'tabler:arrows-right-left',
-      },
-      {
-        title: 'Open to new ideas and contributions',
-        description:
-          'Embracing a culture that is open to new ideas and contributions is integral fostering innovation, collaboration, and a dynamic user experience.',
-        icon: 'tabler:bulb',
-      },
+  <!-- Stats Widget -->
+  <Stats
+    tagline="Trusted by Windsor"
+    title="Proven Track Record"
+    stats={[
+      { amount: '15+', title: 'Years Experience', icon: 'tabler:calendar-check' },
+      { amount: '500+', title: 'Projects Completed', icon: 'tabler:building' },
+      { amount: '100%', title: 'Local Business', icon: 'tabler:map-pin' },
+      { amount: '24hr', title: 'Response Time', icon: 'tabler:clock' },
     ]}
   />
 
-  <!-- Content Widget **************** -->
-
+  <!-- About Section **************** -->
   <Content
-    isReversed
-    tagline="Inside template"
-    title="AstroWind's Blueprint: Fun Meets Functionality!"
+    id="about"
+    title="About Shields Concrete"
+    subtitle="Windsor's trusted concrete specialists"
+    isReversed={false}
     items={[
       {
-        title: 'Built on top of Astro 5.0',
-        description:
-          'Benefiting from the performance and developer-friendly features of this modern static site generator.',
+        title: '15+ Years Experience',
+        description: 'Serving Windsor and surrounding areas since 2009',
+        icon: 'tabler:calendar-check',
       },
       {
-        title: 'Styled using Tailwind CSS',
-        description:
-          'Facilitating rapid design and consistent styling with this highly popular utility-first CSS framework.',
+        title: 'Licensed & Insured',
+        description: 'Fully licensed and insured for your peace of mind',
+        icon: 'tabler:shield-check',
       },
-      {
-        title: 'Cross-browser compatibility',
-        description:
-          'Ensure your website looks and functions consistently across various web browsers, delivering a seamless experience to all users.',
-      },
+      // ... more stats/badges
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
+      src: '~/assets/images/tristan-at-work.jpg',
+      alt: 'Tristan Shields working on concrete project',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Building on modern foundations</h3>
-      Gain a competitive advantage by incorporating industry leading practices
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+      <h3 class="text-2xl font-bold mb-4">Your Windsor Concrete Experts</h3>
+      <p class="text-lg mb-4">
+        [Long description about the company, Tristan's background, commitment to quality, etc.]
+      </p>
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
+  <!-- Services Section **************** -->
+  <ExpandableServices
+    id="services"
+    title="Our Concrete Services"
+    subtitle="Professional solutions for every concrete need in Windsor"
+    columns={3}
+    services={[
       {
-        title: 'High level of customization',
-        description: `Tailor the template effortlessly to match your brand's identity and requirements, making your website distinct and saving you time.`,
+        title: 'Driveways',
+        description: 'Beautiful, durable driveways that enhance your curb appeal',
+        detailedDescription:
+          'Our concrete driveways are designed to withstand Windsor winters and heavy traffic. We use high-quality concrete mix with proper reinforcement techniques to ensure longevity and beauty for decades to come.',
+        icon: 'tabler:car',
+        features: [
+          'Site preparation & excavation',
+          'Reinforced concrete pour',
+          'Decorative finish options',
+          '5-year warranty',
+          'Proper drainage systems',
+        ],
+        timeline: '3-5 days',
+        priceRange: '$8-12/sq ft',
       },
       {
-        title: 'Multiple layout possibilities',
-        description:
-          'Explore various layout options to find the structure that best presents your content, enhancing user engagement and navigation.',
+        title: 'Patios',
+        description: 'Transform your backyard into an outdoor living paradise',
+        detailedDescription:
+          'Create the perfect outdoor entertainment space with our custom concrete patios. From simple slabs to decorative stamped patterns, we design patios that complement your home and lifestyle.',
+        icon: 'tabler:umbrella',
+        features: [
+          'Custom design consultation',
+          'Stamped & colored options',
+          'Seamless integration with landscaping',
+          'Non-slip surface treatments',
+          'Weather-resistant finishes',
+        ],
+        timeline: '2-4 days',
+        priceRange: '$6-10/sq ft',
       },
       {
-        title: 'Fully responsive design',
-        description:
-          "Ensure your website's optimal performance on various devices and screen sizes, providing a consistent and enjoyable user experience.",
+        title: 'Sidewalks',
+        description: 'Safe, level walkways that connect your property beautifully',
+        detailedDescription:
+          'Ensure safe passage around your property with professionally installed concrete sidewalks. We focus on proper grading, drainage, and accessibility compliance for long-lasting results.',
+        icon: 'tabler:walk',
+        features: [
+          'ADA compliant design',
+          'Proper slope & drainage',
+          'Expansion joint installation',
+          'Smooth or textured finishes',
+          'Municipal permit assistance',
+        ],
+        timeline: '1-3 days',
+        priceRange: '$5-8/sq ft',
       },
       {
-        title: 'Integration of media',
-        description:
-          'Seamlessly incorporate images, videos, and multimedia elements that enhance your content and engage visitors effectively.',
+        title: 'Porches',
+        description: 'Welcoming entryways that make a great first impression',
+        detailedDescription:
+          "Enhance your home's entrance with a beautiful concrete porch. We specialize in both traditional and modern designs that complement your home's architecture while providing durability.",
+        icon: 'tabler:home',
+        features: [
+          'Architectural design matching',
+          'Decorative concrete options',
+          'Integrated lighting preparation',
+          'Railing anchor points',
+          'Weather protection features',
+        ],
+        timeline: '2-5 days',
+        priceRange: '$10-15/sq ft',
+      },
+      {
+        title: 'Garage Floors',
+        description: 'Industrial-strength floors built for heavy use',
+        detailedDescription:
+          'Upgrade your garage with a professional concrete floor that can handle vehicles, tools, and heavy equipment. Our floors are designed for durability and easy maintenance.',
+        icon: 'tabler:building',
+        features: [
+          'High-strength concrete mix',
+          'Oil-resistant sealers',
+          'Crack control joints',
+          'Smooth trowel finish',
+          'Fast-track scheduling',
+        ],
+        timeline: '2-3 days',
+        priceRange: '$4-7/sq ft',
+      },
+      {
+        title: 'Basement Floors',
+        description: 'Moisture-resistant foundation floors done right',
+        detailedDescription:
+          'Create a solid foundation for your basement with properly installed concrete floors. We ensure proper moisture barriers and vapor control for a dry, durable basement space.',
+        icon: 'tabler:building-warehouse',
+        features: [
+          'Vapor barrier installation',
+          'Proper sub-grade preparation',
+          'Moisture control systems',
+          'Level installation for finishing',
+          'Insulation-ready preparation',
+        ],
+        timeline: '3-4 days',
+        priceRange: '$3-6/sq ft',
       },
     ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Ensure your online presence truly represents you.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    isAfterContent
-    items={[
-      {
-        title: 'Enhanced user engagement',
-        description:
-          'Captivate your audience with interactive elements, intuitive navigation, and visually appealing layouts, encouraging longer visits.',
-      },
-      {
-        title: 'Continuous improvement',
-        description:
-          'Ensure your website stays aligned with the latest trends and technologies through regular updates and enhancements.',
-      },
-      {
-        title: 'Time and resource efficiency',
-        description:
-          'Skip the time-consuming process of building a website from scratch and launch your online presence sooner with AstroWind.',
-      },
-      {
-        title: 'Community support',
-        description: `Join the growing AstroWind community for insights, resources, and assistance, ensuring you're never alone on your web development journey.`,
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1611462985358-60d3498e0364?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Astronauts Image',
-    }}
-  >
-    <Fragment slot="content">Designed to foster growth and success.</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title="Get your dream website up and running in no time with AstroWind."
-    items={[
-      {
-        title: 'Step 1: <span class="font-medium">Download</span>',
-        description:
-          "Kickstart with GitHub! Either fork the AstroWind template or simply click 'Use this template'. Your canvas awaits, ready for your digital masterpiece. In just a few clicks, you've already set the foundation.",
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Step 2: <span class="font-medium">Add content</span>',
-        description:
-          "Pour your vision into it. Add images, text, and all that jazz to breathe life into your digital space. Remember, it's the content that tells your story, so make it captivating.",
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Step 3: <span class="font-medium">Customize styles</span>',
-        description:
-          'Give it your personal touch. Tailor colors, fonts, and layouts until it feels just right. Your unique flair, amplified by AstroWind! Precision in design ensures a seamless user experience.',
-        icon: 'tabler:paint',
-      },
-      {
-        title: 'Ready!',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
   />
 
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Most used widgets"
-    subtitle="Provides frequently used components for building websites using Tailwind CSS"
-    tagline="Components"
-    items={[
+  <!-- Project Section **************** -->
+  <SimpleGallery
+    id="projects"
+    title="Our Recent Work"
+    subtitle="See the quality and craftsmanship that sets Shields Concrete apart"
+    columns={3}
+    images={[
       {
-        title: 'Headers',
-        description: "Ever tried driving without GPS? Boom! That's why websites need headers for direction.",
-        icon: 'flat-color-icons:template',
+        src: '~/assets/images/driveway-1.jpg',
+        alt: 'Beautiful concrete driveway in Windsor',
+        category: 'Driveways',
+        title: 'Modern Residential Driveway',
       },
       {
-        title: 'Heros',
-        description:
-          "Picture a superhero landing – epic, right? That's the job of a Hero section, making grand entrances!",
-        icon: 'flat-color-icons:gallery',
+        src: '~/assets/images/patio-1.jpg',
+        alt: 'Stamped concrete patio',
+        category: 'Patios',
+        title: 'Backyard Entertainment Space',
       },
-      {
-        title: 'Features',
-        description:
-          'Where websites strut their stuff and show off superpowers. No holding back on the bragging rights here!',
-        icon: 'flat-color-icons:approval',
-      },
-      {
-        title: 'Content',
-        description:
-          "Dive into the meat and potatoes of a site; without it, you'd just be window shopping. Content is king.",
-        icon: 'flat-color-icons:document',
-      },
-      {
-        title: 'Call-to-Action',
-        description:
-          'That enthusiastic friend who\'s always urging, "Do it! Do it!"? Yeah, that\'s this button nudging you towards adventure.',
-        icon: 'flat-color-icons:advertising',
-      },
-      {
-        title: 'Pricing',
-        description: 'Behold the dessert menu of the website world. Tempting choices await, can you resist?',
-        icon: 'flat-color-icons:currency-exchange',
-      },
-      {
-        title: 'Testimonial',
-        description: 'Step into the gossip corner! Here, other visitors spill the beans and share the juicy details.',
-        icon: 'flat-color-icons:voice-presentation',
-      },
-      {
-        title: 'Contact',
-        description:
-          'Like a digital mailbox, but faster! Drop a line, ask a question, or send a virtual high-five. Ding! Message in.',
-        icon: 'flat-color-icons:business-contact',
-      },
-      {
-        title: 'Footers',
-        description: "The footer's like the credits of a movie but sprinkled with easter eggs. Time to hunt!",
-        icon: 'flat-color-icons:database',
-      },
+      // ... 4-6 more images
     ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
-
-  <!-- HighlightedPosts Widget ******* -->
-
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `}
   />
 
   <!-- FAQs Widget ******************* -->
-
   <FAQs
     title="Frequently Asked Questions"
     subtitle="Dive into the following questions to gain insights into the powerful features that AstroWind offers and how it can elevate your web development journey."
@@ -363,37 +245,22 @@ const metadata = {
     ]}
   />
 
-  <!-- Stats Widget ****************** -->
-
-  <Stats
-    stats={[
-      { title: 'Downloads', amount: '132K' },
-      { title: 'Stars', amount: '24.8K' },
-      { title: 'Forks', amount: '10.3K' },
-      { title: 'Users', amount: '48.4K' },
+  <!-- CallToAction Widget *********** -->
+  <CallToAction
+    tagline="Ready to Start?"
+    title="Get Your Free Quote Today"
+    subtitle="Professional concrete work with guaranteed results - call now!"
+    actions={[
+      { variant: 'primary', text: 'Call (226) 350-4642', href: 'tel:2263504642' },
+      { variant: 'secondary', text: 'Request Quote', href: '#contact' },
     ]}
   />
 
-  <!-- CallToAction Widget *********** -->
-
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-    ]}
-  >
-    <Fragment slot="title">
-      Astro&nbsp;+&nbsp;<br class="block sm:hidden" /><span class="sm:whitespace-nowrap">Tailwind CSS</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      Be very surprised by these huge fake numbers you are seeing on this page. <br class="hidden md:inline" />Don't
-      waste more time! :P
-    </Fragment>
-  </CallToAction>
+  <!-- Contact Section **************** -->
+  <ShieldsContact
+    id="contact"
+    title="Ready to Start Your Project?"
+    subtitle="Get your free quote today - no obligation, just honest pricing for quality work"
+    tagline="Contact Us"
+  />
 </Layout>
