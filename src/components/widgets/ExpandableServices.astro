@@ -9,6 +9,7 @@ export interface ServiceItem {
   description: string;
   detailedDescription: string;
   icon: string;
+  image?: string | unknown;
   features?: string[];
   timeline?: string;
   priceRange?: string;
@@ -37,44 +38,58 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline 
+    title={title} 
+    subtitle={subtitle} 
+    tagline={tagline} 
+    classes={{
+      container: 'max-w-3xl mx-auto text-center mb-16',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-slate-900 dark:text-white',
+      subtitle: 'text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium relative',
+    }}
+  />
   
   <div class={`grid gap-8 ${
     columns === 3 ? 'md:grid-cols-2 lg:grid-cols-3' : 
-    columns === 2 ? 'md:grid-cols-2' : 
+    columns === 2 ? 'lg:grid-cols-2' : 
     'grid-cols-1'
   }`}>
     {services.map((service) => (
-      <div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter">
-        <!-- Service Header -->
-        <div class="p-6 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-slate-800 dark:to-slate-700">
-          <div class="flex items-center mb-4">
-            <div class="flex-shrink-0">
-              <div class="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center">
-                <Icon name={service.icon} class="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <div class="ml-4">
-              <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">{service.title}</h3>
-              <p class="text-gray-600 dark:text-gray-300 font-medium">{service.description}</p>
-            </div>
-          </div>
-        </div>
+      <div 
+        class="group rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 overflow-hidden intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter flex flex-col h-full relative min-h-[500px] bg-cover bg-center group-hover:scale-[1.02]"
+        style={service.image ? 
+          `background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('${(typeof service.image === "object" && service.image && "src" in service.image ? (service.image as { src?: string }).src : service.image)}');` : 
+          'background-color: #1e293b;'
+        }
+      >
 
-        <!-- Service Content -->
-        <div class="p-6">
-          <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-lg">
+        <!-- Content Container -->
+        <div class="relative z-10 p-8 flex flex-col h-full text-white">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 bg-white/20 backdrop-blur-sm border border-white/30">
+            <Icon name={service.icon} class="w-7 h-7 text-white" />
+          </div>
+          
+          <!-- Title & Description -->
+          <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors duration-200">
+            {service.title}
+          </h3>
+          <p class="text-white/90 font-medium leading-relaxed mb-6">
+            {service.description}
+          </p>
+          
+          <p class="text-white/80 mb-6 leading-relaxed flex-grow">
             {service.detailedDescription}
           </p>
           
           {service.features && (
             <div class="mb-6">
-              <h4 class="font-bold text-gray-900 dark:text-white mb-3 text-lg">What's Included:</h4>
-              <ul class="space-y-2">
+              <h4 class="font-bold text-white mb-4 text-sm uppercase tracking-wide">What's Included</h4>
+              <ul class="space-y-3">
                 {service.features.map(feature => (
-                  <li class="flex items-center text-gray-600 dark:text-gray-300">
-                    <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center mr-3 flex-shrink-0">
-                      <Icon name="tabler:check" class="w-3 h-3 text-white" />
+                  <li class="flex items-start text-white/90 text-sm">
+                    <div class="w-4 h-4 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0" style="background-color: var(--aw-color-primary);">
+                      <Icon name="tabler:check" class="w-2.5 h-2.5 text-white" />
                     </div>
                     {feature}
                   </li>
@@ -84,29 +99,34 @@ const {
           )}
           
           {(service.timeline || service.priceRange) && (
-            <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-gray-50 dark:bg-slate-800 rounded-lg">
+            <div class="grid grid-cols-2 gap-4 mb-6 p-4 bg-black/30 backdrop-blur-sm rounded-xl border border-white/20">
               {service.timeline && (
                 <div class="text-center">
-                  <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Timeline</div>
-                  <div class="text-lg font-bold text-gray-900 dark:text-white">{service.timeline}</div>
+                  <div class="text-xs font-bold text-white/70 uppercase tracking-wide mb-1">Timeline</div>
+                  <div class="text-sm font-bold text-white">{service.timeline}</div>
                 </div>
               )}
               {service.priceRange && (
                 <div class="text-center">
-                  <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-1">Starting From</div>
-                  <div class="text-lg font-bold text-orange-600 dark:text-orange-400">{service.priceRange}</div>
+                  <div class="text-xs font-bold text-white/70 uppercase tracking-wide mb-1">Starting From</div>
+                  <div class="text-sm font-bold" style="color: var(--aw-color-primary);">{service.priceRange}</div>
                 </div>
               )}
             </div>
           )}
           
-          <a 
-            href="#contact" 
-            class="inline-flex items-center justify-center w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 text-lg"
-          >
-            Get Free Quote for {service.title}
-            <Icon name="tabler:arrow-right" class="w-5 h-5 ml-2" />
-          </a>
+          <div class="mt-auto">
+            <a 
+              href="#contact" 
+              class="group/btn inline-flex items-center justify-center w-full text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl backdrop-blur-sm border border-white/30"
+              style="background-color: var(--aw-color-primary);"
+              onmouseover="this.style.backgroundColor='var(--aw-color-secondary)'"
+              onmouseout="this.style.backgroundColor='var(--aw-color-primary)'"
+            >
+              Get Quote for {service.title}
+              <Icon name="tabler:arrow-right" class="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-200" />
+            </a>
+          </div>
         </div>
       </div>
     ))}

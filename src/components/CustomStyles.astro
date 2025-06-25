@@ -27,19 +27,28 @@ import '@fontsource-variable/open-sans';
     --aw-font-serif: 'Open Sans';
     --aw-font-heading: 'Roboto Condensed';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Shields Concrete Brand Colors */
+    --aw-color-primary: rgb(220 38 38); /* Red #dc2626 - CTAs, phone numbers, urgent actions */
+    --aw-color-secondary: rgb(185 28 28); /* Darker red #b91c1c - hover states */
+    --aw-color-accent: rgb(239 68 68); /* Lighter red #ef4444 - highlights */
 
-    --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
+    /* Text Colors */
+    --aw-color-text-heading: rgb(15 23 42); /* Slate-900 #0f172a - strong headings */
+    --aw-color-text-default: rgb(30 41 59); /* Slate-800 #1e293b - body text */
+    --aw-color-text-muted: rgb(71 85 105); /* Slate-600 #475569 - muted text */
 
-    --aw-color-bg-page-dark: rgb(3 6 32);
+    /* Background Colors */
+    --aw-color-bg-page: rgb(255 255 255); /* Pure white */
+    --aw-color-bg-page-dark: rgb(15 23 42); /* Slate-900 for dark sections */
+
+    /* Additional Brand Colors */
+    --aw-color-gray-light: rgb(248 250 252); /* Slate-50 #f8fafc - light backgrounds */
+    --aw-color-gray-medium: rgb(148 163 184); /* Slate-400 #94a3b8 - borders, dividers */
+    --aw-color-gray-dark: rgb(51 65 85); /* Slate-700 #334155 - dark elements */
 
     ::selection {
-      background-color: lavender;
+      background-color: rgb(220 38 38 / 0.2); /* Light red selection */
+      color: rgb(15 23 42);
     }
   }
 
@@ -48,18 +57,87 @@ import '@fontsource-variable/open-sans';
     --aw-font-serif: 'Open Sans';
     --aw-font-heading: 'Roboto Condensed';
 
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
+    /* Dark mode maintains same red accents */
+    --aw-color-primary: rgb(239 68 68); /* Slightly lighter red for dark backgrounds */
+    --aw-color-secondary: rgb(220 38 38); /* Standard red for hover */
+    --aw-color-accent: rgb(248 113 113); /* Light red #f87171 for highlights */
 
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
+    /* Dark mode text colors - greys and whites */
+    --aw-color-text-heading: rgb(255 255 255); /* Pure white for headings */
+    --aw-color-text-default: rgb(229 231 235); /* Gray-200 for body text */
+    --aw-color-text-muted: rgb(156 163 175); /* Gray-400 for muted text */
+
+    /* Dark mode backgrounds - blacks and dark greys */
+    --aw-color-bg-page: rgb(17 24 39); /* Gray-900 - very dark but not pure black */
+    --aw-color-bg-page-dark: rgb(0 0 0); /* True black for darker sections */
 
     ::selection {
-      background-color: black;
-      color: snow;
+      background-color: rgb(239 68 68 / 0.3); /* Red selection in dark mode */
+      color: rgb(255 255 255);
     }
+  }
+
+  /* Custom utility classes for Shields Concrete brand */
+  .text-brand-red {
+    color: var(--aw-color-primary);
+  }
+
+  .bg-brand-red {
+    background-color: var(--aw-color-primary);
+  }
+
+  .border-brand-red {
+    border-color: var(--aw-color-primary);
+  }
+
+  .text-brand-slate {
+    color: var(--aw-color-text-heading);
+  }
+
+  .bg-brand-slate {
+    background-color: var(--aw-color-bg-page-dark);
+  }
+
+  .text-brand-muted {
+    color: var(--aw-color-text-muted);
+  }
+
+  /* Professional concrete texture overlay utility */
+  .concrete-texture {
+    position: relative;
+  }
+
+  .concrete-texture::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+      radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+    background-size:
+      60px 60px,
+      45px 45px,
+      30px 30px;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* Industrial accent lines */
+  .accent-line {
+    position: relative;
+  }
+
+  .accent-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--aw-color-primary), var(--aw-color-secondary));
   }
 </style>

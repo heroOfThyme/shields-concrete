@@ -24,17 +24,26 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-3xl mx-auto text-center mb-16',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-slate-900 dark:text-white',
+      subtitle: 'text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium relative',
+    }}
+  />
 
   <div class="grid lg:grid-cols-2 gap-12 items-start">
     <!-- Contact Form -->
-    <div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl p-8">
-      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Get Your Free Quote</h3>
+    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl shadow-sm p-8 border border-slate-100 dark:border-slate-700">
+      <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Get Your Free Quote</h3>
 
       <form class="space-y-6" action="#" method="POST">
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
-            <label for="firstName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            <label for="firstName" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
               First Name *
             </label>
             <input
@@ -42,12 +51,13 @@ const {
               id="firstName"
               name="firstName"
               required
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
+              style="focus:ring-color: var(--aw-color-primary);"
               placeholder="John"
             />
           </div>
           <div>
-            <label for="lastName" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            <label for="lastName" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
               Last Name *
             </label>
             <input
@@ -55,14 +65,15 @@ const {
               id="lastName"
               name="lastName"
               required
-              class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
+              style="focus:ring-color: var(--aw-color-primary);"
               placeholder="Smith"
             />
           </div>
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label for="email" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
             Email Address *
           </label>
           <input
@@ -70,33 +81,36 @@ const {
             id="email"
             name="email"
             required
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
+            style="focus:ring-color: var(--aw-color-primary);"
             placeholder="john@example.com"
           />
         </div>
 
         <div>
-          <label for="phone" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label for="phone" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
             Phone Number
           </label>
           <input
             type="tel"
             id="phone"
             name="phone"
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
+            style="focus:ring-color: var(--aw-color-primary);"
             placeholder="(226) 123-4567"
           />
         </div>
 
         <div>
-          <label for="projectType" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label for="projectType" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
             Project Type *
           </label>
           <select
             id="projectType"
             name="projectType"
             required
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
+            style="focus:ring-color: var(--aw-color-primary);"
           >
             <option value="">Select a service...</option>
             <option value="driveway">Driveway</option>
@@ -110,27 +124,34 @@ const {
         </div>
 
         <div>
-          <label for="message" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+          <label for="message" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
             Project Details
           </label>
           <textarea
             id="message"
             name="message"
             rows="4"
-            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-colors resize-vertical"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200 resize-vertical"
+            style="focus:ring-color: var(--aw-color-primary);"
             placeholder="Tell us about your project - size, timeline, specific requirements..."></textarea>
         </div>
 
         <Button
           type="submit"
           variant="primary"
-          class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 text-lg"
+          class="w-full font-bold py-4 px-6 transition-all duration-200 shadow-sm hover:shadow-md group"
+          style="background-color: var(--aw-color-primary); border-color: var(--aw-color-primary);"
+          onmouseover="this.style.backgroundColor='var(--aw-color-secondary)'; this.style.borderColor='var(--aw-color-secondary)';"
+          onmouseout="this.style.backgroundColor='var(--aw-color-primary)'; this.style.borderColor='var(--aw-color-primary)';"
         >
           Send Free Quote Request
-          <Icon name="tabler:send" class="w-5 h-5 ml-2" />
+          <Icon
+            name="tabler:send"
+            class="w-5 h-5 ml-2 inline group-hover:translate-x-1 transition-transform duration-200"
+          />
         </Button>
 
-        <p class="text-sm text-gray-600 dark:text-gray-400 text-center">
+        <p class="text-sm text-slate-600 dark:text-slate-400 text-center">
           We'll get back to you within 24 hours with your free estimate
         </p>
       </form>
@@ -139,23 +160,27 @@ const {
     <!-- Contact Information -->
     <div class="space-y-8">
       <!-- Primary Contact -->
-      <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-8">
-        <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Get In Touch</h3>
+      <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700">
+        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Get In Touch</h3>
 
         <div class="space-y-6">
           <!-- Phone -->
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center"
+                style="background-color: var(--aw-color-primary);"
+              >
                 <Icon name="tabler:phone" class="w-6 h-6 text-white" />
               </div>
             </div>
             <div class="ml-4">
-              <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Call Us</h4>
-              <p class="text-gray-600 dark:text-gray-300 mt-1">Ready to discuss your project?</p>
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">Call Us</h4>
+              <p class="text-slate-600 dark:text-slate-300 mt-1">Ready to discuss your project?</p>
               <a
                 href="tel:2263504642"
-                class="text-2xl font-bold text-orange-600 dark:text-orange-400 hover:text-orange-700 transition-colors mt-2 block"
+                class="text-2xl font-black hover:underline transition-all duration-200 mt-2 block"
+                style="color: var(--aw-color-primary);"
               >
                 (226) 350-4642
               </a>
@@ -165,16 +190,20 @@ const {
           <!-- Email -->
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center"
+                style="background-color: var(--aw-color-primary);"
+              >
                 <Icon name="tabler:mail" class="w-6 h-6 text-white" />
               </div>
             </div>
             <div class="ml-4">
-              <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Email Us</h4>
-              <p class="text-gray-600 dark:text-gray-300 mt-1">Send us your project details</p>
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">Email Us</h4>
+              <p class="text-slate-600 dark:text-slate-300 mt-1">Send us your project details</p>
               <a
                 href="mailto:info@shieldsconcrete.ca"
-                class="text-lg font-semibold text-orange-600 dark:text-orange-400 hover:text-orange-700 transition-colors mt-2 block"
+                class="text-lg font-bold hover:underline transition-all duration-200 mt-2 block"
+                style="color: var(--aw-color-primary);"
               >
                 info@shieldsconcrete.ca
               </a>
@@ -184,13 +213,16 @@ const {
           <!-- Service Area -->
           <div class="flex items-start">
             <div class="flex-shrink-0">
-              <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center"
+                style="background-color: var(--aw-color-primary);"
+              >
                 <Icon name="tabler:map-pin" class="w-6 h-6 text-white" />
               </div>
             </div>
             <div class="ml-4">
-              <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Service Area</h4>
-              <p class="text-gray-600 dark:text-gray-300 mt-1">
+              <h4 class="text-lg font-bold text-slate-900 dark:text-white">Service Area</h4>
+              <p class="text-slate-600 dark:text-slate-300 mt-1">
                 Windsor, Essex County<br />
                 & Surrounding Areas
               </p>
@@ -200,22 +232,22 @@ const {
       </div>
 
       <!-- Hours -->
-      <div class="bg-gray-50 dark:bg-slate-800 rounded-xl p-6">
-        <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Business Hours</h4>
-        <div class="space-y-2 text-gray-600 dark:text-gray-300">
+      <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700">
+        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Business Hours</h4>
+        <div class="space-y-2 text-slate-600 dark:text-slate-300">
           <div class="flex justify-between">
             <span>Monday - Friday:</span>
-            <span class="font-semibold">7:00 AM - 6:00 PM</span>
+            <span class="font-bold">7:00 AM - 6:00 PM</span>
           </div>
           <div class="flex justify-between">
             <span>Saturday:</span>
-            <span class="font-semibold">8:00 AM - 4:00 PM</span>
+            <span class="font-bold">8:00 AM - 4:00 PM</span>
           </div>
           <div class="flex justify-between">
             <span>Sunday:</span>
-            <span class="font-semibold">Closed</span>
+            <span class="font-bold">Closed</span>
           </div>
-          <p class="text-sm mt-3 text-gray-500 dark:text-gray-400">Emergency services available by appointment</p>
+          <p class="text-sm mt-3 text-slate-500 dark:text-slate-400">Emergency services available by appointment</p>
         </div>
       </div>
     </div>

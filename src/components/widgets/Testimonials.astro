@@ -1,8 +1,7 @@
 ---
 import Headline from '~/components/ui/Headline.astro';
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import Button from '~/components/ui/Button.astro';
-import Image from '~/components/common/Image.astro';
+import { Icon } from 'astro-icon/components';
 import type { Testimonials as Props } from '~/types';
 
 const {
@@ -10,7 +9,6 @@ const {
   subtitle = '',
   tagline = '',
   testimonials = [],
-  callToAction,
 
   id,
   isDark = false,
@@ -20,44 +18,57 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-6xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline 
+    title={title} 
+    subtitle={subtitle} 
+    tagline={tagline} 
+    classes={{
+      container: 'max-w-3xl mx-auto text-center mb-16',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-slate-900 dark:text-white',
+      subtitle: 'text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium relative',
+    }}
+  />
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {
       testimonials &&
-        testimonials.map(({ title, testimonial, name, job, image }) => (
+        testimonials.map(({ title, testimonial, name, job }) => (
           <div class="flex h-auto intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
-            <div class="flex flex-col p-4 md:p-6 rounded-md shadow-xl dark:shadow-none dark:border dark:border-slate-600">
-              {title && <h2 class="text-lg font-medium leading-6 pb-4">{title}</h2>}
+            <div class="flex flex-col p-6 md:p-8 rounded-2xl shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-all duration-300 group">
+              
+              {/* Google Reviews Stars */}
+              <div class="flex items-center mb-4">
+                <div class="flex space-x-1 mr-3">
+                  {[...Array(5)].map(() => (
+                    <Icon name="tabler:star-filled" class="w-5 h-5" style="color: var(--aw-color-primary);" />
+                  ))}
+                </div>
+                <div class="flex items-center space-x-2">
+                  <Icon name="tabler:brand-google" class="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                  <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Google Review</span>
+                </div>
+              </div>
+
+              {title && (
+                <h3 class="text-lg font-bold leading-6 mb-4 text-slate-900 dark:text-white group-hover:text-slate-800 dark:group-hover:text-slate-100 transition-colors duration-200">
+                  {title}
+                </h3>
+              )}
+              
               {testimonial && (
-                <blockquote class="flex-auto">
-                  <p class="text-muted">" {testimonial} "</p>
+                <blockquote class="flex-auto mb-6">
+                  <p class="text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                    "{testimonial}"
+                  </p>
                 </blockquote>
               )}
 
               <hr class="border-slate-200 dark:border-slate-600 my-4" />
 
               <div class="flex items-center">
-                {image && (
-                  <div class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-600">
-                    {typeof image === 'string' ? (
-                      <Fragment set:html={image} />
-                    ) : (
-                      <Image
-                        class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-600 min-w-full min-h-full"
-                        width={40}
-                        height={40}
-                        widths={[400, 768]}
-                        layout="fixed"
-                        {...image}
-                      />
-                    )}
-                  </div>
-                )}
-
-                <div class="grow ml-3 rtl:ml-0 rtl:mr-3">
-                  {name && <p class="text-base font-semibold">{name}</p>}
-                  {job && <p class="text-xs text-muted">{job}</p>}
+                <div class="grow rtl:ml-0 rtl:mr-4">
+                  {name && <p class="text-base font-bold text-slate-900 dark:text-white">{name}</p>}
+                  {job && <p class="text-sm text-slate-600 dark:text-slate-400">{job}</p>}
                 </div>
               </div>
             </div>
@@ -65,11 +76,4 @@ const {
         ))
     }
   </div>
-  {
-    callToAction && (
-      <div class="flex justify-center mx-auto w-fit mt-8 md:mt-12 font-medium">
-        <Button {...callToAction} />
-      </div>
-    )
-  }
 </WidgetWrapper>

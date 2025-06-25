@@ -2,19 +2,23 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-900 text-white">
+<footer class="bg-slate-900 dark:bg-slate-950 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
     <div class="grid md:grid-cols-3 gap-8 items-center">
       <!-- Company Info -->
       <div class="text-center md:text-left">
-        <h3 class="text-2xl font-bold text-white mb-2">Shields Concrete</h3>
-        <p class="text-gray-300">Professional concrete services in Windsor & Essex County</p>
+        <h3 class="text-2xl font-black text-white mb-2">Shields Concrete</h3>
+        <p class="text-slate-300">Professional concrete services in Windsor & Essex County</p>
       </div>
 
       <!-- Quick Contact -->
       <div class="text-center">
-        <p class="text-gray-300 mb-2">Ready to start your project?</p>
-        <a href="tel:2263504642" class="text-2xl font-bold text-orange-400 hover:text-orange-300 transition-colors">
+        <p class="text-slate-300 mb-2">Ready to start your project?</p>
+        <a
+          href="tel:2263504642"
+          class="text-2xl font-black hover:underline transition-all duration-200"
+          style="color: var(--aw-color-primary);"
+        >
           (226) 350-4642
         </a>
       </div>
@@ -22,17 +26,17 @@ const currentYear = new Date().getFullYear();
       <!-- Quick Links (One-Page Navigation) -->
       <div class="text-center md:text-right">
         <nav class="space-x-6">
-          <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
-          <a href="#services" class="text-gray-300 hover:text-white transition-colors">Services</a>
-          <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Work</a>
-          <a href="#contact" class="text-gray-300 hover:text-white transition-colors">Contact</a>
+          <a href="#about" class="text-slate-300 hover:text-white transition-colors duration-200">About</a>
+          <a href="#services" class="text-slate-300 hover:text-white transition-colors duration-200">Services</a>
+          <a href="#projects" class="text-slate-300 hover:text-white transition-colors duration-200">Work</a>
+          <a href="#contact" class="text-slate-300 hover:text-white transition-colors duration-200">Contact</a>
         </nav>
       </div>
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-gray-700 mt-8 pt-6">
-      <div class="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-400">
+    <div class="border-t border-slate-700 dark:border-slate-800 mt-8 pt-6">
+      <div class="flex flex-col sm:flex-row justify-between items-center text-sm text-slate-400">
         <!-- Copyright -->
         <div class="mb-4 sm:mb-0">
           <p>&copy; {currentYear} Shields Concrete. All rights reserved.</p>
@@ -45,7 +49,8 @@ const currentYear = new Date().getFullYear();
             href="https://rvbdatasciences.com"
             target="_blank"
             rel="noopener noreferrer"
-            class="font-semibold text-orange-400 hover:text-orange-300 transition-colors"
+            class="font-bold hover:underline transition-all duration-200"
+            style="color: var(--aw-color-primary);"
           >
             RVB Data Sciences
           </a>
@@ -53,4 +58,7 @@ const currentYear = new Date().getFullYear();
       </div>
     </div>
   </div>
+
+  <!-- Top accent line -->
+  <div class="h-1" style="background: linear-gradient(90deg, transparent, var(--aw-color-primary), transparent);"></div>
 </footer>

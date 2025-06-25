@@ -6,24 +6,34 @@ export interface Props {
 
 const {
   label = 'Toggle Menu',
-  class: className = 'flex flex-col h-12 w-12 rounded justify-center items-center cursor-pointer group',
+  class: className = 'flex h-12 w-12 rounded justify-center items-center cursor-pointer group',
 } = Astro.props;
 ---
 
 <button type="button" class={className} aria-label={label} data-aw-toggle-menu>
   <span class="sr-only">{label}</span>
   <slot>
-    <span
-      aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-2.5"
-    ></span>
-    <span
-      aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:opacity-0"
-    ></span>
-    <span
-      aria-hidden="true"
-      class="h-0.5 w-6 my-1 rounded-full bg-black dark:bg-white transition ease transform duration-200 opacity-80 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-2.5"
-    ></span>
+    <!-- Solid box that stays solid -->
+    <div class="relative w-6 h-6 flex items-center justify-center">
+      <!-- Box background (always visible) -->
+      <div class="absolute w-6 h-6 bg-slate-800 dark:bg-white rounded-sm"></div>
+
+      <!-- Menu lines inside box (hidden when expanded) -->
+      <div class="absolute flex flex-col space-y-1 transition-all duration-200 group-[.expanded]:opacity-0">
+        <div class="w-3 h-0.5 bg-white dark:bg-slate-800 rounded-full"></div>
+        <div class="w-3 h-0.5 bg-white dark:bg-slate-800 rounded-full"></div>
+        <div class="w-3 h-0.5 bg-white dark:bg-slate-800 rounded-full"></div>
+      </div>
+
+      <!-- X lines inside box (show when expanded) -->
+      <span
+        aria-hidden="true"
+        class="absolute h-0.5 w-3 bg-white dark:bg-slate-800 rounded-full transform rotate-45 opacity-0 transition-all duration-200 group-[.expanded]:opacity-100"
+      ></span>
+      <span
+        aria-hidden="true"
+        class="absolute h-0.5 w-3 bg-white dark:bg-slate-800 rounded-full transform -rotate-45 opacity-0 transition-all duration-200 group-[.expanded]:opacity-100"
+      ></span>
+    </div>
   </slot>
 </button>

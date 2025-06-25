@@ -1,5 +1,7 @@
 ---
 import type { Stats as Props } from '~/types';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
 import { Icon } from 'astro-icon/components';
 
 const {
@@ -7,60 +9,48 @@ const {
   subtitle = await Astro.slots.render('subtitle'),
   tagline,
   stats = [],
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<section class="relative bg-slate-900 text-white py-16 md:py-20 overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <div
-      class="absolute inset-0"
-      style="background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0); background-size: 40px 40px;"
-    >
-    </div>
-  </div>
-
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-6xl mx-auto border border-red-100 rounded-xl bg-red-100 ${classes?.container ?? ''}`}
+  bg={bg}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      title: 'text-6xl md:text-7xl font-black text-white mb-8 leading-tight', // Huge and tight
+    }}
+  />
+  <div class="flex flex-wrap justify-center -m-4 text-center">
     {
-      (title || subtitle || tagline) && (
-        <div class="text-center mb-12">
-          {tagline && <p class="text-orange-400 font-bold tracking-wide uppercase text-sm mb-2">{tagline}</p>}
-          {title && <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" set:html={title} />}
-          {subtitle && <p class="text-xl text-gray-300 max-w-3xl mx-auto" set:html={subtitle} />}
-        </div>
-      )
+      stats &&
+        stats.map(({ amount, title, icon }) => (
+          <div class="p-4 md:w-1/4 sm:w-1/2 w-full min-w-[220px] text-center md:border-r md:last:border-none md:border-slate-500 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter">
+            {icon && (
+              <div class="flex items-center justify-center mx-auto mb-4 text-primary">
+                <Icon name={icon} class="w-10 h-10" />
+              </div>
+            )}
+            {amount && (
+              <div class="font-heading text-primary text-[2.6rem] font-bold dark:text-primary lg:text-5xl xl:text-6xl">
+                {amount}
+              </div>
+            )}
+            {title && (
+              <div class="text-sm font-medium uppercase tracking-widest text-gray-800 lg:text-headline">{title}</div>
+            )}
+          </div>
+        ))
     }
-
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-      {
-        stats &&
-          stats.map((stat) => (
-            <div class="text-center group">
-              {stat.icon && (
-                <div class="flex items-center justify-center mx-auto mb-4">
-                  <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center group-hover:bg-orange-400 transition-colors duration-300">
-                    <Icon name={stat.icon} class="w-8 h-8 text-white" />
-                  </div>
-                </div>
-              )}
-
-              {stat.amount && (
-                <div class="font-heading text-orange-400 text-4xl md:text-5xl lg:text-6xl font-black mb-2 group-hover:text-orange-300 transition-colors duration-300">
-                  {stat.amount}
-                </div>
-              )}
-
-              {stat.title && (
-                <div class="text-sm md:text-base font-semibold uppercase tracking-wide text-gray-300 group-hover:text-white transition-colors duration-300">
-                  {stat.title}
-                </div>
-              )}
-            </div>
-          ))
-      }
-    </div>
   </div>
-
-  <!-- Bottom accent line -->
-  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-600 via-orange-500 to-orange-600"></div>
-</section>
+</WidgetWrapper>

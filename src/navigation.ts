@@ -23,7 +23,7 @@ export const headerData = {
       href: getPermalink('#contact'),
     },
   ],
-  actions: [{ text: 'Call Us Today', href: '#', variant: 'primary' }, { text: 'Get a Quote', href: '#', variant: 'secondary' }],
+  actions: [{ text: 'Call (226) 350-4642', href: 'tel:2263504642', variant: 'primary' }],
 };
 
 export const footerData = {

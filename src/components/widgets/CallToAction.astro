@@ -11,6 +11,7 @@ interface Props extends Widget {
   tagline?: string;
   callToAction?: CallToAction;
   actions?: string | CallToAction[];
+  image?: string | unknown;
 }
 
 const {
@@ -20,71 +21,64 @@ const {
   actions = await Astro.slots.render('actions'),
 
   id,
-  isDark = false,
+  isDark = true,
   classes = {},
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
 ---
 
-<section
-  class="relative bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700 text-white py-16 md:py-20 overflow-hidden"
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`max-w-6xl mx-auto text-center ${classes?.container ?? ''}`}
+  bg={bg}
 >
-  <!-- Background Elements -->
-  <div class="absolute inset-0 opacity-20">
-    <!-- Diagonal stripes pattern -->
-    <div
-      class="absolute inset-0"
-      style="background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);"
-    >
-    </div>
-  </div>
+  <Fragment slot="bg">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </Fragment>
 
-  <!-- Floating elements for visual interest -->
-  <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
-  <div class="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-  <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-white/10 rounded-full blur-lg"></div>
-
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
-    {
-      tagline && (
-        <p
-          class="text-orange-100 font-bold tracking-widest uppercase text-sm mb-4 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-          set:html={tagline}
-        />
-      )
-    }
-
-    {
-      title && (
-        <h2
-          class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-white intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-          set:html={title}
-        />
-      )
-    }
-
-    {
-      subtitle && (
-        <p
-          class="text-xl md:text-2xl text-orange-100 mb-8 max-w-4xl mx-auto font-medium leading-relaxed intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-          set:html={subtitle}
-        />
-      )
-    }
+  <div class="relative z-20">
+    <Headline
+      title={title}
+      subtitle={subtitle}
+      tagline={tagline}
+      classes={{
+        container: 'max-w-4xl mx-auto text-center mb-12',
+        title: 'text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-white',
+        subtitle: 'text-xl md:text-2xl text-slate-200 font-medium leading-relaxed relative',
+      }}
+    />
 
     {
       actions && (
-        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade mb-12">
           {Array.isArray(actions) ? (
             actions.map((action, index) => (
-              <div class="w-full sm:w-auto">
+              <div class="sm:w-auto">
                 <Button
                   {...(action || {})}
-                  class={`w-full sm:w-auto text-lg px-10 py-5 font-bold shadow-2xl ${
+                  class={`px-8 py-4 font-bold shadow-2xl transition-all duration-300 ${
                     index === 0
-                      ? 'bg-white hover:bg-gray-100 text-orange-600 border-white hover:border-gray-100 transform hover:scale-105 transition-all duration-300'
-                      : 'bg-transparent hover:bg-white/10 text-white border-white hover:border-white/80 transform hover:scale-105 transition-all duration-300'
+                      ? 'text-white border-2 transform hover:scale-105'
+                      : 'bg-white hover:bg-slate-100 text-slate-900 border-2 border-white hover:border-slate-200 transform hover:scale-105'
                   }`}
+                  style={
+                    index === 0
+                      ? `background-color: var(--aw-color-primary); border-color: var(--aw-color-primary);`
+                      : ''
+                  }
+                  onmouseover={
+                    index === 0
+                      ? `this.style.backgroundColor='var(--aw-color-secondary)'; this.style.borderColor='var(--aw-color-secondary)';`
+                      : ''
+                  }
+                  onmouseout={
+                    index === 0
+                      ? `this.style.backgroundColor='var(--aw-color-primary)'; this.style.borderColor='var(--aw-color-primary)';`
+                      : ''
+                  }
                 />
               </div>
             ))
@@ -95,22 +89,22 @@ const {
       )
     }
 
-    <!-- Extra visual emphasis -->
-    <div class="mt-12 flex justify-center items-center space-x-8 text-orange-100 opacity-80">
+    <!-- Trust indicators -->
+    <div class="flex justify-center items-center space-x-8 text-slate-300 opacity-80">
       <div class="flex items-center space-x-2">
         <Icon name="tabler:phone" class="w-5 h-5" />
         <span class="text-sm font-medium">Call Today</span>
       </div>
-      <div class="w-px h-6 bg-orange-200"></div>
+      <div class="w-px h-6 bg-slate-400"></div>
       <div class="flex items-center space-x-2">
         <Icon name="tabler:clock" class="w-5 h-5" />
         <span class="text-sm font-medium">Fast Response</span>
       </div>
-      <div class="w-px h-6 bg-orange-200"></div>
+      <div class="w-px h-6 bg-slate-400"></div>
       <div class="flex items-center space-x-2">
         <Icon name="tabler:shield-check" class="w-5 h-5" />
         <span class="text-sm font-medium">Guaranteed</span>
       </div>
     </div>
   </div>
-</section>
+</WidgetWrapper>
