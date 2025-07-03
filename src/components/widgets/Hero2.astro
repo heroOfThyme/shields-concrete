@@ -30,8 +30,7 @@ const {
         {
           tagline && (
             <p
-              class="text-base font-bold tracking-wide uppercase intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
-              style="color: var(--aw-color-primary);"
+              class="text-base font-bold tracking-wide uppercase  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter text-brand-red"
               set:html={tagline}
             />
           )
@@ -39,7 +38,7 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
               set:html={title}
             />
           )
@@ -48,12 +47,9 @@ const {
           {
             subtitle && (
               <div class="relative mb-6">
-                <div
-                  class="absolute left-0 top-0 w-1 h-full opacity-80"
-                  style="background-color: var(--aw-color-primary);"
-                />
+                <div class="absolute left-0 top-0 w-1 h-full opacity-80 bg-brand-red" />
                 <p
-                  class="text-xl text-white pl-6 intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+                  class="text-xl text-white pl-6  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
                   set:html={subtitle}
                 />
               </div>
@@ -61,29 +57,11 @@ const {
           }
           {
             actions && (
-              <div class="flex flex-nowrap flex-col sm:flex-row gap-4 lg:justify-start intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
+              <div class="flex flex-nowrap flex-col sm:flex-row gap-4 lg:justify-start  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex sm:w-auto">
-                      <Button
-                        {...(action || {})}
-                        class="sm:mb-0 px-6 py-3 font-semibold transition-all duration-200"
-                        style={
-                          action.variant === 'primary'
-                            ? 'background-color: var(--aw-color-primary); border-color: var(--aw-color-primary); color: white;'
-                            : 'background-color: transparent; border-color: white; color: white;'
-                        }
-                        onmouseover={
-                          action.variant === 'primary'
-                            ? "this.style.backgroundColor='var(--aw-color-secondary)'; this.style.borderColor='var(--aw-color-secondary)';"
-                            : "this.style.backgroundColor='rgba(255,255,255,0.1)';"
-                        }
-                        onmouseout={
-                          action.variant === 'primary'
-                            ? "this.style.backgroundColor='var(--aw-color-primary)'; this.style.borderColor='var(--aw-color-primary)';"
-                            : "this.style.backgroundColor='transparent';"
-                        }
-                      />
+                      <Button {...(action || {})} class="sm:mb-0 px-6 py-3 font-semibold transition-all duration-200" />
                     </div>
                   ))
                 ) : (
@@ -98,7 +76,7 @@ const {
       {
         image && (
           <div class="basis-1/2 items-center justify-center hidden lg:flex">
-            <div class="relative m-auto max-w-5xl intersect-once intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
+            <div class="relative m-auto max-w-5xl  intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (

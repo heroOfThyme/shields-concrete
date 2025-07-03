@@ -2,6 +2,7 @@
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
 import Image from '~/components/common/Image.astro';
+import Button from '~/components/ui/Button.astro';
 import type { Widget } from '~/types';
 
 export interface ProjectImage {
@@ -17,6 +18,8 @@ export interface Props extends Widget {
   tagline?: string;
   images: ProjectImage[];
   columns?: number;
+  initialCount?: number;
+  loadMoreCount?: number;
 }
 
 const {
@@ -24,7 +27,8 @@ const {
   subtitle = await Astro.slots.render('subtitle'),
   tagline = await Astro.slots.render('tagline'),
   images = [],
-  columns = 4,
+  initialCount = 3,
+  loadMoreCount = 3,
 
   id,
   isDark = false,
@@ -45,20 +49,14 @@ const {
     }}
   />
 
-  <div
-    class={`grid gap-6 ${
-      columns === 4
-        ? 'sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
-        : columns === 3
-          ? 'sm:grid-cols-2 lg:grid-cols-3'
-          : columns === 2
-            ? 'sm:grid-cols-2'
-            : 'grid-cols-1'
-    }`}
-  >
+  <!-- Image Grid -->
+  <div id="gallery-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {
       images.map((project, index) => (
-        <div class="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-slate-100 dark:bg-slate-800 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter">
+        <div 
+          class={`gallery-item relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-slate-100 dark:bg-slate-800 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter ${index >= initialCount ? 'hidden' : ''}`}
+          data-index={index}
+        >
           <div class="aspect-[4/3] overflow-hidden">
             <Image
               src={project.src}
@@ -66,7 +64,7 @@ const {
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               width={400}
               height={300}
-              loading={index < 4 ? 'eager' : 'lazy'}
+              loading={index < initialCount ? 'eager' : 'lazy'}
               decoding="async"
             />
           </div>
@@ -87,9 +85,80 @@ const {
           )}
 
           <!-- Subtle corner accent -->
-          <div class="absolute top-3 right-3 w-3 h-3 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100" style="background-color: var(--aw-color-primary);"></div>
+          <div class="absolute top-3 right-3 w-3 h-3 rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100 bg-brand-red"></div>
         </div>
       ))
     }
   </div>
+
+  <!-- Load More Button -->
+  {images.length > initialCount && (
+    <div class="text-center mt-12">
+      <Button
+        id="load-more-btn"
+        variant="primary"
+        class="px-8 py-3 font-bold"
+        text="Load More Projects"
+      />
+      
+      <!-- Hidden counter to track current count -->
+      <span id="current-count" class="hidden">{initialCount}</span>
+      <span id="load-count" class="hidden">{loadMoreCount}</span>
+      <span id="total-count" class="hidden">{images.length}</span>
+    </div>
+  )}
 </WidgetWrapper>
+
+<script>
+  function initializeGallery() {
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const currentCountEl = document.getElementById('current-count');
+    const loadCountEl = document.getElementById('load-count');
+    const totalCountEl = document.getElementById('total-count');
+    
+    if (!loadMoreBtn || !currentCountEl || !loadCountEl || !totalCountEl) return;
+    
+    let currentCount = parseInt(currentCountEl.textContent || '0');
+    const loadCount = parseInt(loadCountEl.textContent || '0');
+    const totalCount = parseInt(totalCountEl.textContent || '0');
+    
+    loadMoreBtn.addEventListener('click', function() {
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const nextCount = Math.min(currentCount + loadCount, totalCount);
+      
+      // Show the next batch of images
+      for (let i = currentCount; i < nextCount; i++) {
+        const item = galleryItems[i];
+        if (item) {
+          item.classList.remove('hidden');
+          // Trigger animation
+          setTimeout(() => {
+            item.classList.add('intersect-once', 'motion-safe:md:opacity-0', 'motion-safe:md:intersect:animate-fade', 'intersect-quarter');
+          }, 100);
+        }
+      }
+      
+      currentCount = nextCount;
+      currentCountEl.textContent = currentCount.toString();
+      
+      // Hide button if all images are shown
+      if (currentCount >= totalCount) {
+        loadMoreBtn.style.display = 'none';
+      } else {
+        // Update button text with remaining count
+        const remaining = totalCount - currentCount;
+        const nextBatch = Math.min(loadCount, remaining);
+        const span = loadMoreBtn.querySelector('span');
+        if (span) {
+          span.textContent = `Load More Projects (${nextBatch} more)`;
+        }
+      }
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initializeGallery);
+  
+  // Re-initialize after Astro page transitions
+  document.addEventListener('astro:after-swap', initializeGallery);
+</script>

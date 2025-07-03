@@ -1,9 +1,15 @@
 ---
-import { SITE } from 'astrowind:config';
+import Image from '~/components/common/Image.astro';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<div class="flex items-center">
+  <div class="w-1 h-12 mr-3" style="background-color: var(--aw-color-primary);"></div>
+  <Image
+    src="~/assets/images/shields-cement-main-logo.png"
+    alt="Shields Concrete Logo"
+    class="h-16 w-auto"
+    width={870}
+    height={374}
+    loading="eager"
+  />
+</div>

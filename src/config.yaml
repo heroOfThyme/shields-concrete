@@ -21,10 +21,6 @@ metadata:
         width: 1200
         height: 628
     type: website
-  twitter:
-    handle: '@shieldsconcrete'
-    site: '@shieldsconcrete'
-    cardType: summary_large_image
 
 i18n:
   language: en

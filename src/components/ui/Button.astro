@@ -13,28 +13,33 @@ const {
   ...rest
 } = Astro.props;
 
+// Map variants to CSS classes
 const variants = {
   primary: 'btn-primary',
   secondary: 'btn-secondary',
-  tertiary: 'btn btn-tertiary',
-  link: 'cursor-pointer hover:text-primary',
+  'secondary-dark': 'btn-secondary-dark',
+  tertiary: 'btn-tertiary',
+  link: 'btn-link',
+  outline: 'btn-outline',
+  ghost: 'btn-ghost',
+  cta: 'btn-cta',
+  phone: 'btn-phone',
 };
+
+// Build the final class string
+const buttonClasses = twMerge(variants[variant] || 'btn-secondary', className);
 ---
 
 {
   type === 'button' || type === 'submit' || type === 'reset' ? (
-    <button type={type} class={twMerge(variants[variant] || '', className)} {...rest}>
+    <button type={type} class={buttonClasses} {...rest}>
+      {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2" />}
       <Fragment set:html={text} />
-      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
     </button>
   ) : (
-    <a
-      class={twMerge(variants[variant] || '', className)}
-      {...(target ? { target: target, rel: 'noopener noreferrer' } : {})}
-      {...rest}
-    >
+    <a class={buttonClasses} {...(target ? { target: target, rel: 'noopener noreferrer' } : {})} {...rest}>
+      {icon && <Icon name={icon} class="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2" />}
       <Fragment set:html={text} />
-      {icon && <Icon name={icon} class="w-5 h-5 ml-1 -mr-1.5 rtl:mr-1 rtl:-ml-1.5 inline-block" />}
     </a>
   )
 }

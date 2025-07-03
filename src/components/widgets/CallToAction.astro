@@ -3,7 +3,6 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import type { CallToAction, Widget } from '~/types';
 import Headline from '~/components/ui/Headline.astro';
 import Button from '~/components/ui/Button.astro';
-import { Icon } from 'astro-icon/components';
 
 interface Props extends Widget {
   title?: string;
@@ -46,8 +45,8 @@ const {
       tagline={tagline}
       classes={{
         container: 'max-w-4xl mx-auto text-center mb-12',
-        title: 'text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6 text-white',
-        subtitle: 'text-xl md:text-2xl text-slate-200 font-medium leading-relaxed relative',
+        title: 'text-4xl md:text-5xl lg:text-6xl font-black leading-relaxed mb-6 text-white',
+        subtitle: 'text-xl md:text-2xl text-white font-medium leading-relaxed relative',
       }}
     />
 
@@ -59,26 +58,8 @@ const {
               <div class="sm:w-auto">
                 <Button
                   {...(action || {})}
-                  class={`px-8 py-4 font-bold shadow-2xl transition-all duration-300 ${
-                    index === 0
-                      ? 'text-white border-2 transform hover:scale-105'
-                      : 'bg-white hover:bg-slate-100 text-slate-900 border-2 border-white hover:border-slate-200 transform hover:scale-105'
-                  }`}
-                  style={
-                    index === 0
-                      ? `background-color: var(--aw-color-primary); border-color: var(--aw-color-primary);`
-                      : ''
-                  }
-                  onmouseover={
-                    index === 0
-                      ? `this.style.backgroundColor='var(--aw-color-secondary)'; this.style.borderColor='var(--aw-color-secondary)';`
-                      : ''
-                  }
-                  onmouseout={
-                    index === 0
-                      ? `this.style.backgroundColor='var(--aw-color-primary)'; this.style.borderColor='var(--aw-color-primary)';`
-                      : ''
-                  }
+                  variant={index === 0 ? 'primary' : 'secondary'}
+                  class="px-8 py-4 font-bold shadow-2xl transform hover:scale-105 transition-all duration-300"
                 />
               </div>
             ))
@@ -88,23 +69,4 @@ const {
         </div>
       )
     }
-
-    <!-- Trust indicators -->
-    <div class="flex justify-center items-center space-x-8 text-slate-300 opacity-80">
-      <div class="flex items-center space-x-2">
-        <Icon name="tabler:phone" class="w-5 h-5" />
-        <span class="text-sm font-medium">Call Today</span>
-      </div>
-      <div class="w-px h-6 bg-slate-400"></div>
-      <div class="flex items-center space-x-2">
-        <Icon name="tabler:clock" class="w-5 h-5" />
-        <span class="text-sm font-medium">Fast Response</span>
-      </div>
-      <div class="w-px h-6 bg-slate-400"></div>
-      <div class="flex items-center space-x-2">
-        <Icon name="tabler:shield-check" class="w-5 h-5" />
-        <span class="text-sm font-medium">Guaranteed</span>
-      </div>
-    </div>
-  </div>
 </WidgetWrapper>

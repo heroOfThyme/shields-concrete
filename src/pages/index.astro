@@ -12,19 +12,38 @@ import Image from '~/components/common/Image.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 
 const metadata = {
-  title: 'AstroWind — Free template for creating websites with Astro + Tailwind CSS',
+  title: 'cement Contractor Windsor | Driveways, Patios & More | Shields cement',
   ignoreTitleTemplate: true,
+  description:
+    'Professional cement services in Windsor & Essex County. Driveways, patios, sidewalks, garage floors & more. Licensed, insured & guaranteed. Call (226) 350-4642 for free quote.',
+  canonical: 'https://shieldscement.ca',
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    url: 'https://shieldscement.ca',
+    siteName: 'Shields cement',
+    images: [
+      {
+        url: '~/assets/images/finished-driveway-1.jpg',
+        width: 1200,
+        height: 628,
+      },
+    ],
+    locale: 'en_CA',
+    type: 'website',
+  },
 };
-
-import garageDoorImg from '~/assets/images/garage-door.jpg';
 ---
 
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
   <Hero2
-  tagline="Windsor\'s Concrete Experts"
-    title="SHIELDS<br/><span class='bg-red-500 text-transparent bg-clip-text'>CONCRETE</span>"
-    subtitle="Professional concrete services for residential and commercial properties in Windsor & Essex County. Quality workmanship, competitive pricing, and guaranteed results."
+    id="home"
+    tagline="Windsor\'s cement Experts"
+    title="Windsor\'s Premier Cement Contractor"
+    subtitle="Professional cement services for residential and commercial properties in Windsor & Essex County. Quality workmanship, competitive pricing, and guaranteed results."
     actions={[
       { variant: 'primary', text: 'Call (226) 350-4642', href: 'tel:2263504642' },
       { variant: 'secondary', text: 'See Our Services', href: '#services' },
@@ -32,63 +51,58 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
   >
     <Fragment slot="bg">
       <Image
-        src="~/assets/images/hero-bg.jpg"
-        alt="Concrete texture background"
+        src="~/assets/images/finished-driveway-1.jpg"
+        alt="cement texture background"
         class="absolute inset-0 w-full h-full object-cover z-0"
       />
-      <div class="absolute inset-0 bg-black opacity-70 z-10"></div>
+      <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
     </Fragment>
   </Hero2>
 
   <!-- About Section **************** -->
   <Content
     id="about"
-    tagline="About Us"
-    title="About Shields Concrete"
-    subtitle="Windsor's trusted concrete specialists"
-    isReversed={false}
+    tagline="Our Story"
+    title="About Shields cement"
+    subtitle="Windsor's trusted cement specialists"
+    isReversed={true}
+    image={{
+      src: '~/assets/images/finished-driveway-5.jpg',
+      alt: 'Tristan Shields working on cement project',
+    }}
     items={[
       {
         title: 'Licensed & Insured',
-        description: 'Fully licensed and insured for your peace of mind',
+        description: 'Fully licensed and insured for your peace of mind.',
         icon: 'tabler:shield-check',
       },
       {
         title: 'Quality Workmanship',
-        description: 'We take pride in delivering top-notch concrete solutions',
-        icon: 'tabler:hammer',
+        description: 'We take pride in delivering top-notch cement solutions.',
+        icon: 'tabler:home-check',
       },
       {
-        title: 'Customer Satisfaction',
-        description: 'Our top priority is your satisfaction with our work',
-        icon: 'tabler:star',
+        title: 'Professional Installation',
+        description: 'Proper techniques and materials every single time.',
+        icon: 'tabler:tools',
       },
-      // ... more stats/badges
     ]}
-    image={{
-      src: '~/assets/images/hero-bg.jpg',
-      alt: 'Tristan Shields working on concrete project',
-    }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold mb-4 font-heading">Your Windsor Concrete Experts</h3>
+      <h3 class="md:text-4xl text-2xl font-bold mb-2 font-heading">Your Local cement Experts</h3>
       <p class="text-lg mb-4">
-        For over 15 years, Shields Concrete has been Windsor's go-to concrete contractor for residential and commercial
-        projects. Founded by Tristan Shields, our company has built a reputation for delivering exceptional concrete
-        work that stands the test of time. We specialize in all aspects of concrete installation, from residential
-        driveways and patios to commercial foundations and industrial flooring. Our team combines traditional
-        craftsmanship with modern techniques to ensure every project meets the highest standards of quality and
-        durability. What sets us apart is our commitment to customer satisfaction and our deep understanding of
-        Windsor's unique climate challenges. We use premium materials and proven installation methods to create concrete
-        surfaces that withstand harsh Canadian winters and heavy use.
+        For over 15 years, Shields cement has been Windsor's go-to cement contractor for residential and commercial
+        projects. Founded by Tristan Shields, our company has built a reputation for delivering exceptional cement
+        work that stands the test of time. We specialize in all aspects of cement installation, from residential
+        driveways and patios to commercial foundations and industrial flooring.
       </p>
     </Fragment>
   </Content>
 
   <CallToAction
     tagline="Ready to Start?"
-    title="Get Your Free Quote Today"
-    subtitle="Professional concrete work with guaranteed results - call now!"
+    title="Let's Build <br>Something Great"
+    subtitle="Professional cement work with guaranteed results - call now!"
     actions={[
       {
         variant: 'primary',
@@ -97,15 +111,15 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
       },
       {
         variant: 'secondary',
-        text: 'Request Quote',
+        text: 'Send Us a Message',
         href: '#contact',
       },
     ]}
   >
     <Fragment slot="bg">
       <Image
-        src="~/assets/images/hero-bg.jpg"
-        alt="Professional concrete work in progress"
+        src="~/assets/images/cement-backyard-deck.jpg"
+        alt="Professional cement work in progress"
         class="absolute inset-0 w-full h-full object-cover z-10"
       />
       <div class="absolute inset-0 bg-black opacity-70 z-20"></div>
@@ -115,128 +129,73 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
   <!-- Services Section **************** -->
   <ExpandableServices
     id="services"
-    title="Our Concrete Services"
-    subtitle="Professional solutions for every concrete need in Windsor"
-    columns={2}
+    tagline="What We Build"
+    title="Our cement Services"
+    subtitle="Professional solutions for every cement need in Windsor"
+    columns={3}
     services={[
       {
         title: 'Residential Driveways',
-        description: 'Create a stunning first impression with a professionally installed concrete driveway',
-        detailedDescription:
-          "Our residential driveway installation service transforms your property's curb appeal while providing a durable surface for years to come. We handle everything from excavation and site preparation to the final finishing touches. Each driveway is custom-designed to complement your home's architecture and properly manage water drainage. Using reinforced concrete and proper curing techniques, we ensure your new driveway will withstand Windsor's freeze-thaw cycles and heavy vehicle traffic.",
+        description:
+          'Professional driveway installation that enhances curb appeal and provides lasting durability for your home.',
         icon: 'tabler:car',
-        features: [
-          'Site preparation & excavation',
-          'Reinforced concrete pour',
-          'Decorative finish options',
-          '5-year warranty',
-          'Proper drainage systems',
-        ],
-        timeline: '3-5 days',
         priceRange: '$8-12/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/finished-driveway-7.jpg',
+          alt: 'cement driveway installation',
         },
       },
       {
         title: 'Patios & Outdoor Living',
-        description: 'Transform your backyard into the perfect outdoor entertainment space',
-        detailedDescription:
-          'Whether you envision a simple concrete patio or an elaborate stamped and colored design, we bring your outdoor living dreams to life. Our patio installation includes proper base preparation, reinforcement, and finishing options like exposed aggregate, stamping, or decorative coloring. We work with you to design a space that flows seamlessly with your landscaping and provides the perfect foundation for outdoor furniture and activities.',
+        description:
+          'Transform your backyard with custom cement patios perfect for outdoor entertainment and relaxation.',
         icon: 'tabler:umbrella',
-        features: [
-          'Custom design consultation',
-          'Stamped & colored options',
-          'Seamless integration with landscaping',
-          'Non-slip surface treatments',
-          'Weather-resistant finishes',
-        ],
-        timeline: '2-4 days',
         priceRange: '$6-10/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/cement-backyard-deck-2.jpg',
+          alt: 'cement patio installation',
         },
       },
       {
         title: 'Sidewalks & Walkways',
-        description: 'Safe, durable walkways that enhance accessibility and property value',
-        detailedDescription:
-          'Professional sidewalk installation ensures safe passage around your property while meeting municipal requirements and accessibility standards. We handle permit applications, proper grading for drainage, and installation of expansion joints to prevent cracking. Our sidewalks are built to last, with options for textured surfaces that provide slip resistance in all weather conditions.',
+        description: 'Safe, accessible walkways that meet municipal standards and enhance your property value.',
         icon: 'tabler:walk',
-        features: [
-          'ADA compliant design',
-          'Proper slope & drainage',
-          'Expansion joint installation',
-          'Smooth or textured finishes',
-          'Municipal permit assistance',
-        ],
-        timeline: '1-3 days',
         priceRange: '$5-8/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/cement-pathway-windsor.jpg',
+          alt: 'cement sidewalk installation',
         },
       },
       {
         title: 'Porches & Entryways',
-        description: 'Welcoming entryways that make a lasting first impression',
-        detailedDescription:
-          "Enhance your home's curb appeal with a professionally designed and installed concrete porch. We create custom entryways that complement your home's architecture while providing a durable, weather-resistant surface. Our porch installations include proper drainage, reinforcement for structural integrity, and finishing options to match your aesthetic preferences. Whether you need a simple front step or an elaborate wraparound porch, we ensure proper integration with your home's foundation and existing structures.",
+        description: 'Welcoming cement porches and entryways that make a lasting first impression for your home.',
         icon: 'tabler:home',
-        features: [
-          'Architectural design matching',
-          'Decorative concrete options',
-          'Integrated lighting preparation',
-          'Railing anchor points',
-          'Weather protection features',
-        ],
-        timeline: '2-5 days',
         priceRange: '$10-15/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/cement-patio-and-stairs.jpg',
+          alt: 'cement porch installation',
         },
       },
       {
-        title: 'Garage Floors & Basement Floors',
-        description: 'Durable interior concrete floors built for heavy use and moisture resistance',
-        detailedDescription:
-          'Professional concrete floors for garages and basements require specialized techniques to ensure proper moisture control and durability. Our interior concrete services include vapor barrier installation, proper sub-grade preparation, and high-strength concrete mixes designed for heavy loads. We create level, smooth surfaces perfect for vehicle storage, workshops, or finished basement spaces. Our floors are designed to resist oil stains, cracking, and moisture issues common in below-grade applications.',
+        title: 'Garage & Basement Floors',
+        description:
+          'Durable interior cement floors designed for heavy use with moisture control and smooth finishes.',
         icon: 'tabler:building',
-        features: [
-          'High-strength concrete mix',
-          'Oil-resistant sealers',
-          'Crack control joints',
-          'Smooth trowel finish',
-          'Fast-track scheduling',
-        ],
-        timeline: '2-3 days',
         priceRange: '$4-7/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/cement-patio-and-stairs.jpg',
+          alt: 'cement floor installation',
         },
       },
       {
-        title: 'Commercial & Industrial Concrete',
-        description: 'Heavy-duty concrete solutions for business and industrial properties',
-        detailedDescription:
-          'From retail storefronts to industrial facilities, we provide comprehensive commercial concrete services. Our experience includes parking lots, loading docks, warehouse floors, and foundation work. We understand the unique demands of commercial projects, including tight schedules, specific engineering requirements, and the need for minimal business disruption during construction. We work with engineers and architects to deliver concrete solutions that meet commercial building codes and performance requirements.',
+        title: 'Commercial Projects',
+        description:
+          'Heavy-duty cement solutions for business properties including parking lots and industrial flooring.',
         icon: 'tabler:building-warehouse',
-        features: [
-          'Vapor barrier installation',
-          'Proper sub-grade preparation',
-          'Moisture control systems',
-          'Level installation for finishing',
-          'Insulation-ready preparation',
-        ],
-        timeline: '3-4 days',
         priceRange: '$3-6/sq ft',
         image: {
-          src: garageDoorImg.src, // Use .src property of the imported image
-          alt: 'Concrete driveway installation in Windsor',
+          src: '~/assets/images/commercial-cement-dock-windsor.jpg',
+          alt: 'Commercial cement work',
         },
       },
     ]}
@@ -245,57 +204,60 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
   <!-- Project Section **************** -->
   <SimpleGallery
     id="projects"
+    tagline="Proven Results"
     title="Our Recent Work"
-    subtitle="See the quality and craftsmanship that sets Shields Concrete apart"
+    subtitle="See the quality and craftsmanship that sets Shields cement apart"
     images={[
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Beautiful concrete driveway in Windsor',
+        src: '~/assets/images/finished-driveway-7.jpg',
+        alt: 'Beautiful cement driveway in Windsor',
         category: 'Driveways',
         title: 'Modern Residential Driveway',
       },
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Stamped concrete patio',
+        src: '~/assets/images/cement-stairs-to-porch-windsor.jpg',
+        alt: 'Stamped cement patio',
         category: 'Patios',
-        title: 'Backyard Entertainment Space',
+        title: 'Sharp Stairs and Patio',
       },
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Concrete sidewalk installation',
-        category: 'Sidewalks',
-        title: 'Safe and Accessible Sidewalk',
+        src: '~/assets/images/commercial-cement-dock-windsor.jpg',
+        alt: 'Commercial cement dock',
+        category: 'Commercial Projects',
+        title: 'Heavy-Duty Commercial Dock',
       },
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Concrete porch with decorative finish',
-        category: 'Porches',
-        title: 'Welcoming Front Porch',
+        src: '~/assets/images/finished-driveway-3.jpg',
+        alt: 'New residential driveway',
+        category: 'Driveways',
+        title: 'Freshly Poured Driveway',
       },
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Garage floor with epoxy finish',
-        category: 'Garage Floors',
-        title: 'Durable Garage Flooring',
+        src: '~/assets/images/finished-driveway-6.jpg',
+        alt: 'Residential driveway with smooth finish',
+        category: 'Driveways',
+        title: 'Smooth Cement Driveway',
       },
       {
-        src: '~/assets/images/garage-door.jpg',
-        alt: 'Moisture-resistant basement floor',
-        category: 'Basement Floors',
-        title: 'Dry and Solid Basement Floor',
+        src: '~/assets/images/finished-driveway-5.jpg',
+        alt: 'Residential driveway with decorative finish',
+        category: 'Driveways',
+        title: 'Decorative Driveway Finish',
       },
     ]}
   />
 
   <Testimonials
+    id="testimonials"
+    tagline="Happy Customers"
     title="What Our Customers Say"
-    subtitle="Real reviews from real Windsor customers"
+    subtitle="We take pride in our work and our customers' satisfaction is our top priority."
     tagline="Testimonials"
     testimonials={[
       {
         title: 'Excellent Driveway Work',
         testimonial:
-          'Shields Concrete did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
+          'Shields cement did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
         name: 'Sarah Johnson',
         job: 'Windsor Homeowner',
         image: { src: '~/assets/images/customer1.jpg', alt: 'Sarah Johnson' },
@@ -303,7 +265,7 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
       {
         title: 'Excellent Driveway Work',
         testimonial:
-          'Shields Concrete did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
+          'Shields cement did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
         name: 'Sarah Johnson',
         job: 'Windsor Homeowner',
         image: { src: '~/assets/images/customer1.jpg', alt: 'Sarah Johnson' },
@@ -311,7 +273,7 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
       {
         title: 'Excellent Driveway Work',
         testimonial:
-          'Shields Concrete did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
+          'Shields cement did an amazing job on our driveway. Professional, on time, and the quality is outstanding!',
         name: 'Sarah Johnson',
         job: 'Windsor Homeowner',
         image: { src: '~/assets/images/customer1.jpg', alt: 'Sarah Johnson' },
@@ -326,18 +288,20 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
 
   <!-- FAQs Widget ******************* -->
   <FAQs
+    tagline="Quick Answers"
+    id="faqs"
     title="Frequently Asked Questions"
-    subtitle="Everything you need to know about concrete installation in Windsor"
+    subtitle="Everything you need to know about cement installation in Windsor"
     tagline="FAQs"
     classes={{ container: 'max-w-6xl' }}
     items={[
       {
-        title: 'How long does concrete take to cure?',
+        title: 'How long does cement take to cure?',
         description:
-          "Concrete reaches initial set in 24-48 hours, but full strength develops over 28 days. We'll provide specific timelines for when you can walk on, drive on, or put full loads on your new concrete surface.",
+          "cement reaches initial set in 24-48 hours, but full strength develops over 28 days. We'll provide specific timelines for when you can walk on, drive on, or put full loads on your new cement surface.",
       },
       {
-        title: "What's the best time of year for concrete work in Windsor?",
+        title: "What's the best time of year for cement work in Windsor?",
         description:
           'The ideal season is late spring through early fall when temperatures consistently stay above 10°C. However, we can work year-round with proper cold weather protection techniques.',
       },
@@ -357,8 +321,8 @@ import garageDoorImg from '~/assets/images/garage-door.jpg';
   <!-- Contact Section **************** -->
   <ShieldsContact
     id="contact"
+    tagline="Let's Connect"
     title="Ready to Start Your Project?"
     subtitle="Get your free quote today - no obligation, just honest pricing for quality work"
-    tagline="Contact Us"
   />
 </Layout>
