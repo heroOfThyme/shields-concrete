@@ -1,6 +1,6 @@
 site:
-  name: Shields Concrete
-  site: 'https://shieldsconcrete.ca'
+  name: Shields Cement
+  site: 'https://shieldscement.ca'
   base: '/'
   trailingSlash: false
   googleSiteVerificationId: # Add your Google Search Console verification ID here
@@ -8,16 +8,16 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Shields Concrete - Professional Concrete Services in Windsor
-    template: '%s | Shields Concrete Windsor'
+    default: Shields Cement - Professional Concrete Services in Windsor
+    template: '%s | Shields Cement Windsor'
   description: "Professional concrete services in Windsor, Ontario. Driveways, sidewalks, foundations, and more. Quality workmanship, competitive prices, and reliable service for residential and commercial projects."
   robots:
-    index: true
-    follow: true
+    index: false
+    follow: false
   openGraph:
-    site_name: Shields Concrete
+    site_name: Shields Cement
     images:
-      - url: '~/assets/images/shields-concrete-hero.jpg'
+      - url: '~/assets/images/finished-driveway-1.jpg'
         width: 1200
         height: 628
     type: website
@@ -64,4 +64,4 @@ analytics:
       id: null # Add your Google Analytics 4 ID here (G-XXXXXXXXXX)
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'light:only' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

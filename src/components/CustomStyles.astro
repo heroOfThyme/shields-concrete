@@ -2,23 +2,6 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/roboto-condensed';
 import '@fontsource-variable/open-sans';
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline>
@@ -55,78 +38,5 @@ import '@fontsource-variable/open-sans';
       background-color: rgb(220 38 38 / 0.2); /* Light red selection */
       color: rgb(15 23 42);
     }
-  }
-  .dark {
-    --aw-font-sans: 'Open Sans';
-    --aw-font-serif: 'Open Sans';
-    --aw-font-heading: 'Roboto Condensed';
-
-    /* Dark mode maintains same red accents */
-    --aw-color-primary: rgb(239 68 68); /* Slightly lighter red for dark backgrounds */
-    --aw-color-secondary: rgb(220 38 38); /* Standard red for hover */
-    --aw-color-accent: rgb(248 113 113); /* Light red #f87171 for highlights */
-
-    /* Dark mode text colors - greys and whites */
-    --aw-color-text-heading: rgb(255 255 255); /* Pure white for headings */
-    --aw-color-text-default: rgb(229 231 235); /* Gray-200 for body text */
-    --aw-color-text-muted: rgb(156 163 175); /* Gray-400 for muted text */
-
-    /* Dark mode backgrounds - blacks and dark greys */
-    --aw-color-bg-page: rgb(17 24 39); /* Gray-900 - very dark but not pure black */
-    --aw-color-bg-page-dark: rgb(0 0 0); /* True black for darker sections */
-
-    ::selection {
-      background-color: rgb(239 68 68 / 0.3); /* Red selection in dark mode */
-      color: rgb(255 255 255);
-    }
-  }
-
-  /* Custom utility classes for Shields Concrete brand */
-  .text-brand-red {
-    color: var(--aw-color-primary);
-  }
-
-  .bg-brand-red {
-    background-color: var(--aw-color-primary);
-  }
-
-  .border-brand-red {
-    border-color: var(--aw-color-primary);
-  }
-
-  .text-brand-slate {
-    color: var(--aw-color-text-heading);
-  }
-
-  .bg-brand-slate {
-    background-color: var(--aw-color-bg-page-dark);
-  }
-
-  .text-brand-muted {
-    color: var(--aw-color-text-muted);
-  }
-
-  /* Professional concrete texture overlay utility */
-  .concrete-texture {
-    position: relative;
-  }
-
-  .concrete-texture::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-      radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-      radial-gradient(circle at 40% 40%, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
-    background-size:
-      60px 60px,
-      45px 45px,
-      30px 30px;
-    pointer-events: none;
-    opacity: 0.7;
   }
 </style>

@@ -42,8 +42,8 @@ const {
     tagline={tagline}
     classes={{
       container: 'max-w-3xl mx-auto text-center mb-16',
-      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-slate-900 dark:text-white',
-      subtitle: 'text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium relative',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-primary',
+      subtitle: 'text-xl md:text-2xl text-muted font-medium relative',
     }}
   />
 
@@ -54,10 +54,10 @@ const {
   >
     {
       services.map((service) => (
-        <div class="group bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-300 overflow-hidden intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-half flex flex-col h-full">
+        <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl border border-light hover:border-medium transition-all duration-300 overflow-hidden intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-half flex flex-col h-full">
           {/* Image Section */}
           {service.image && (
-            <div class="aspect-[4/3] overflow-hidden">
+            <div class="aspect-[4/3] overflow-hidden relative">
               <Image
                 src={
                   typeof service.image === 'object' && service.image && 'src' in service.image
@@ -70,6 +70,8 @@ const {
                 height={300}
                 loading="lazy"
               />
+              {/* Subtle overlay on hover */}
+              <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
             </div>
           )}
 
@@ -77,27 +79,43 @@ const {
           <div class="p-6 flex flex-col flex-grow">
             {/* Icon & Title */}
             <div class="flex items-start mb-4">
-              <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 bg-primary">
+              <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 bg-brand-red group-hover:bg-secondary transition-colors duration-300">
                 <Icon name={service.icon} class="w-6 h-6 text-white" />
               </div>
               <div class="min-w-0 flex-1">
-                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors duration-200">
+                <h3 class="text-xl font-bold text-primary mb-2 group-hover:text-brand-red transition-colors duration-200">
                   {service.title}
                 </h3>
                 {service.priceRange && (
-                  <div class="text-sm font-bold text-primary">Starting from {service.priceRange}</div>
+                  <div class="text-sm font-bold text-brand-red">Starting from {service.priceRange}</div>
                 )}
               </div>
             </div>
 
             {/* Description */}
-            <p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-6 flex-grow">{service.description}</p>
+            <p class="text-body leading-relaxed mb-4 flex-grow">{service.description}</p>
+
+            {/* Process Transparency List */}
+            <div class="mb-6 space-y-2">
+              <div class="flex items-center text-sm text-body">
+                <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red flex-shrink-0" />
+                <span>Free on-site estimate</span>
+              </div>
+              <div class="flex items-center text-sm text-body">
+                <Icon name="tabler:shield-check" class="w-4 h-4 mr-2 text-brand-red flex-shrink-0" />
+                <span>Fully licensed & insured</span>
+              </div>
+              <div class="flex items-center text-sm text-body">
+                <Icon name="tabler:tools" class="w-4 h-4 mr-2 text-brand-red flex-shrink-0" />
+                <span>Complete cleanup included</span>
+              </div>
+            </div>
 
             {/* CTA Button */}
-            <div class="pt-4 border-t border-slate-100 dark:border-slate-700">
+            <div class="pt-4 border-t border-light">
               <a
                 href="#contact"
-                class="group/btn inline-flex items-center justify-center w-full text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-md bg-primary hover:bg-secondary"
+                class="group/btn inline-flex items-center justify-center w-full text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-md bg-brand-red hover:bg-secondary"
               >
                 Get Started
                 <Icon
@@ -110,5 +128,23 @@ const {
         </div>
       ))
     }
+  </div>
+
+  <!-- Custom Projects Section -->
+  <div class="mt-12 text-center bg-page-light rounded-2xl p-8 border border-light">
+    <div class="max-w-2xl mx-auto">
+      <h3 class="text-2xl font-bold text-primary mb-4">Got Something More Unique?</h3>
+      <p class="text-body mb-6">
+        We love tackling custom concrete projects and would be happy to hear about your vision. Message us anyway - we'd
+        love to discuss it!
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 hover:shadow-md bg-brand-red hover:bg-secondary"
+      >
+        Tell Us Your Idea
+        <Icon name="tabler:message-circle" class="w-4 h-4 ml-2" />
+      </a>
+    </div>
   </div>
 </WidgetWrapper>

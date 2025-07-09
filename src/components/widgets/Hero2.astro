@@ -30,7 +30,7 @@ const {
         {
           tagline && (
             <p
-              class="text-base font-bold tracking-wide uppercase  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter text-brand-red"
+              class="text-base font-bold tracking-wide uppercase motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter text-brand-red"
               set:html={tagline}
             />
           )
@@ -38,7 +38,7 @@ const {
         {
           title && (
             <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading text-white-override motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
               set:html={title}
             />
           )
@@ -49,7 +49,7 @@ const {
               <div class="relative mb-6">
                 <div class="absolute left-0 top-0 w-1 h-full opacity-80 bg-brand-red" />
                 <p
-                  class="text-xl text-white pl-6  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
+                  class="text-xl text-white-override pl-6 motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter"
                   set:html={subtitle}
                 />
               </div>
@@ -57,7 +57,7 @@ const {
           }
           {
             actions && (
-              <div class="flex flex-nowrap flex-col sm:flex-row gap-4 lg:justify-start  motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
+              <div class="flex flex-nowrap flex-col sm:flex-row gap-4 lg:justify-start motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
                 {Array.isArray(actions) ? (
                   actions.map((action) => (
                     <div class="flex sm:w-auto">
@@ -76,7 +76,7 @@ const {
       {
         image && (
           <div class="basis-1/2 items-center justify-center hidden lg:flex">
-            <div class="relative m-auto max-w-5xl  intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
+            <div class="relative m-auto max-w-5xl intercept-no-queue motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (

@@ -5,13 +5,13 @@ import Button from '~/components/ui/Button.astro';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-slate-900 dark:bg-slate-950 text-white">
+<footer class="bg-black text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
     <div class="grid md:grid-cols-3 gap-8 items-start">
       <!-- Company Info -->
       <div class="text-center md:text-left">
         <h3 class="text-2xl font-black text-white mb-3">Shields Cement Inc.</h3>
-        <p class="text-slate-300 mb-4">Professional cement solutions in Windsor & Essex County.</p>
+        <p class="text-slate-300 mb-4">Professional concrete solutions in Windsor & Essex County.</p>
 
         <!-- Contact Button -->
         <Button
@@ -24,15 +24,15 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Quick Links (One-Page Navigation) -->
-      <div class="text-center flex flex-col items-center ">
+      <div class="text-center flex flex-col items-center">
         <h4 class="text-lg font-bold text-white mb-4">Quick Links</h4>
         <nav class="space-y-2">
-          <a href="#about" class="block text-slate-300 hover:text-white transition-colors duration-200">About Us</a>
-          <a href="#services" class="block text-slate-300 hover:text-white transition-colors duration-200"
+          <a href="#about" class="block text-slate-300 hover:text-primary transition-colors duration-200">About Us</a>
+          <a href="#services" class="block text-slate-300 hover:text-primary transition-colors duration-200"
             >Our Services</a
           >
-          <a href="#projects" class="block text-slate-300 hover:text-white transition-colors duration-200">Our Work</a>
-          <a href="#contact" class="block text-slate-300 hover:text-white transition-colors duration-200">Get Quote</a>
+          <a href="#projects" class="block text-slate-300 hover:text-primary transition-colors duration-200">Our Work</a>
+          <a href="#contact" class="block text-slate-300 hover:text-primary transition-colors duration-200">Message Us</a>
         </nav>
       </div>
 
@@ -43,22 +43,22 @@ const currentYear = new Date().getFullYear();
         <!-- Social Links -->
         <div class="flex justify-center md:justify-end space-x-4 mb-6">
           <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
+            href="https://www.facebook.com/ShieldsCement/"
+            class="w-10 h-10 rounded-full bg-slate-700 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
             aria-label="Facebook"
           >
             <Icon name="tabler:brand-facebook" class="w-5 h-5" />
           </a>
           <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
+            href="https://www.instagram.com/shieldscement/"
+            class="w-10 h-10 rounded-full bg-slate-700 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
             aria-label="Instagram"
           >
             <Icon name="tabler:brand-instagram" class="w-5 h-5" />
           </a>
           <a
-            href="#"
-            class="w-10 h-10 rounded-full bg-slate-800 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
+            href="https://g.co/kgs/nvu6rAE"
+            class="w-10 h-10 rounded-full bg-slate-700 hover:bg-brand-red flex items-center justify-center transition-colors duration-200"
             aria-label="Google Reviews"
           >
             <Icon name="tabler:brand-google" class="w-5 h-5" />
@@ -67,10 +67,10 @@ const currentYear = new Date().getFullYear();
 
         <!-- Legal Links -->
         <div class="space-y-2">
-          <a href="/privacy" class="block text-slate-300 hover:text-white transition-colors duration-200"
+          <a href="/privacy" class="block text-slate-300 hover:text-primary transition-colors duration-200"
             >Privacy Policy</a
           >
-          <a href="/terms" class="block text-slate-300 hover:text-white transition-colors duration-200"
+          <a href="/terms" class="block text-slate-300 hover:text-primary transition-colors duration-200"
             >Terms & Conditions</a
           >
         </div>
@@ -78,18 +78,18 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="border-t border-slate-700 dark:border-slate-800 mt-8 pt-6">
+    <div class="border-t border-slate-700 mt-8 pt-6">
       <div class="flex flex-col sm:flex-row justify-between items-center text-sm text-slate-400">
         <!-- Copyright -->
         <div class="mb-4 sm:mb-0">
-          <p>&copy; {currentYear} Shields Concrete. All rights reserved.</p>
+          <p>&copy; {currentYear} Shields Cement Inc. All rights reserved.</p>
         </div>
 
         <!-- Made By -->
         <div class="flex items-center space-x-4">
           <span>Website by</span>
           <a
-            href="https://rvbdatasciences.com"
+            href="https://rvbcorp.com"
             target="_blank"
             rel="noopener noreferrer"
             class="font-bold hover:underline transition-all duration-200 text-brand-red"

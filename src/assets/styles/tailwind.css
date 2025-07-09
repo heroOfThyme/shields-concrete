@@ -87,7 +87,7 @@
     padding-bottom: 2px;
     margin-bottom: 2px;
   }
-  Í .nav-link-active::after {
+  .nav-link-active::after {
     content: '';
     position: absolute;
     bottom: -8px;
@@ -97,6 +97,49 @@
     background-color: var(--aw-color-primary);
     border-radius: 1px;
   }
+}
+
+.text-primary {
+  color: var(--aw-color-text-heading); /* For headings and important text */
+}
+
+.text-body {
+  color: var(--aw-color-text-default); /* For body text and paragraphs */
+}
+
+.text-muted {
+  color: var(--aw-color-text-muted); /* For captions and secondary text */
+}
+
+.text-white-override {
+  color: rgb(255 255 255) !important; /* Only for text over dark backgrounds */
+}
+
+/* Background utilities */
+.bg-page-light {
+  background-color: var(--aw-color-bg-page-light);
+}
+
+/* Border utilities */
+.border-light {
+  border-color: var(--aw-color-border-light);
+}
+
+.border-medium {
+  border-color: var(--aw-color-border-medium);
+}
+
+/* Brand color utilities */
+.text-brand-red {
+  color: var(--aw-color-primary);
+}
+
+.bg-brand-red {
+  background-color: var(--aw-color-primary);
+}
+
+.border-brand-red {
+  border-color: var(--aw-color-primary);
 }
 
 /* Clean white header */

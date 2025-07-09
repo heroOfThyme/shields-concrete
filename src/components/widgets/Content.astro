@@ -37,8 +37,8 @@ const {
     tagline={tagline}
     classes={{
       container: 'max-w-xl sm:mx-auto lg:max-w-2xl',
-      title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading',
-      subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted dark:text-slate-400',
+      title: 'text-4xl md:text-5xl font-bold tracking-tighter mb-4 font-heading text-primary',
+      subtitle: 'max-w-3xl mx-auto sm:text-center text-xl text-muted',
     }}
   />
   <div class="mx-auto max-w-7xl p-4 md:px-8">
@@ -68,11 +68,11 @@ const {
 
       <!-- Content Section (will be second when isReversed=true) -->
       <div class="md:basis-1/2 self-center">
-        {content && <div class="mb-12 dark:text-slate-400" set:html={content} />}
+        {content && <div class="mb-12 text-body" set:html={content} />}
 
         {
           callToAction && (
-            <div class="mt-[-40px] mb-8 text-primary">
+            <div class="mt-[-40px] mb-8 text-brand-red">
               <Button variant="link" {...callToAction} />
             </div>
           )
@@ -85,10 +85,10 @@ const {
           classes={{
             container: `gap-y-4 md:gap-y-8`,
             panel: 'max-w-none',
-            title: 'text-lg font-medium font-heading leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
-            description: 'text-muted dark:text-slate-400 ml-2 rtl:ml-0 rtl:mr-2',
-            icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-primary dark:bg-primary text-gray-50 p-1',
-            action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+            title: 'text-lg font-medium font-heading leading-6 text-primary ml-2 rtl:ml-0 rtl:mr-2',
+            description: 'text-muted ml-2 rtl:ml-0 rtl:mr-2',
+            icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-brand-red text-white p-1',
+            action: 'text-lg font-medium leading-6 text-primary ml-2 rtl:ml-0 rtl:mr-2',
           }}
         />
       </div>
