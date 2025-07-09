@@ -3,11 +3,13 @@ import Image from '~/components/common/Image.astro';
 ---
 
 <div class="flex items-center">
-  <div class="w-1 h-10 md:h-14 mr-2 md:mr-3" style="background-color: var(--aw-color-primary);"></div>
-  <Image
-    src="~/assets/images/shields-cement-main-logo.png"
-    alt="Shields Concrete Logo"
-    class="h-8 md:h-12 w-auto max-w-[200px] md:max-w-none object-contain"
-    loading="eager"
-  />
+  <div class="w-1 h-10 md:h-12 mr-2 md:mr-3 bg-red-600"></div>
+  <div class="h-8 md:h-10 max-w-[120px] md:max-w-[160px]">
+    <Image
+      src="~/assets/images/shields-cement-main-logo.png"
+      alt="Shields Concrete Logo"
+      class="w-full h-full object-contain"
+      loading="eager"
+    />
+  </div>
 </div>
