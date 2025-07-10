@@ -4,12 +4,49 @@ import Image from '~/components/common/Image.astro';
 
 <div class="flex items-center">
   <div class="w-1 h-10 md:h-12 mr-2 md:mr-3 bg-red-600"></div>
-  <div class="h-8 md:h-10 max-w-[120px] md:max-w-[160px]">
+  <div class="logo-container">
     <Image
       src="~/assets/images/shields-cement-main-logo.png"
       alt="Shields Concrete Logo"
-      class="w-full h-full object-contain"
+      class="logo-img"
       loading="eager"
     />
   </div>
 </div>
+
+<style>
+  .logo-container {
+    height: 1.75rem; /* 28px - slightly smaller */
+    max-width: 110px;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .logo-container {
+      height: 2.25rem; /* 36px - slightly smaller */
+      max-width: 150px;
+    }
+  }
+
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Safari-specific fixes */
+  @supports (-webkit-appearance: none) {
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+</style>
