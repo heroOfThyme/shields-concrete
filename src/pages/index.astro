@@ -6,6 +6,7 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 import ExpandableServices from '~/components/widgets/ExpandableServices.astro';
+import FinishingStyles from '~/components/widgets/FinishingStyles.astro';
 import SimpleGallery from '~/components/widgets/SimpleGallery.astro';
 import ShieldsContact from '~/components/widgets/ShieldsContact.astro';
 import Image from '~/components/common/Image.astro';
@@ -132,40 +133,30 @@ const metadata = {
         description:
           'Professional driveway installation that enhances curb appeal and provides lasting durability for your home.',
         icon: 'tabler:car',
-        priceRange: '$8-12/sq ft',
+        priceRange: '$8-12/sqft',
         image: {
           src: '~/assets/images/finished-driveway-7.jpg',
           alt: 'concrete driveway installation',
         },
       },
       {
-        title: 'Patios & Outdoor Living',
+        title: 'Backyards',
         description:
           'Transform your backyard with custom concrete patios perfect for outdoor entertainment and relaxation.',
         icon: 'tabler:umbrella',
-        priceRange: '$6-10/sq ft',
+        priceRange: '$12/sqft',
         image: {
-          src: '~/assets/images/cement-backyard-deck-2.jpg',
-          alt: 'concrete patio installation',
-        },
-      },
-      {
-        title: 'Sidewalks & Walkways',
-        description: 'Safe, accessible walkways that meet municipal standards and enhance your property value.',
-        icon: 'tabler:walk',
-        priceRange: '$5-8/sq ft',
-        image: {
-          src: '~/assets/images/cement-pathway-windsor.jpg',
-          alt: 'concrete sidewalk installation',
+          src: '~/assets/images/cement-pool-deck-windsor.jpg',
+          alt: 'Cement pool deck installation',
         },
       },
       {
         title: 'Porches & Entryways',
         description: 'Welcoming concrete porches and entryways that make a lasting first impression for your home.',
         icon: 'tabler:home',
-        priceRange: '$10-15/sq ft',
+        priceRange: '$5,000',
         image: {
-          src: '~/assets/images/cement-patio-and-stairs.jpg',
+          src: '~/assets/images/cement-stairs-to-porch-windsor.jpg',
           alt: 'concrete porch installation',
         },
       },
@@ -174,22 +165,99 @@ const metadata = {
         description:
           'Durable interior concrete floors designed for heavy use with moisture control and smooth finishes.',
         icon: 'tabler:building',
-        priceRange: '$4-7/sq ft',
+        priceRange: '$4-7/sqft',
         image: {
           src: '~/assets/images/garage-flooring-commercial.jpg',
           alt: 'concrete floor installation',
         },
       },
       {
-        title: 'Commercial Projects',
+        title: 'Custom & Specialty Projects',
         description:
-          'Heavy-duty concrete solutions for business properties including parking lots and industrial flooring.',
-        icon: 'tabler:building-warehouse',
-        priceRange: '$3-6/sq ft',
-        image: {
-          src: '~/assets/images/commercial-cement-dock-windsor.jpg',
-          alt: 'Commercial concrete work',
-        },
+          'Got something unique in mind? We love tackling custom concrete projects and bringing your vision to life.',
+        icon: 'tabler:bulb',
+        priceRange: 'Custom Quote',
+        isSpecial: true,
+      },
+    ]}
+  />
+
+  <!-- Finishing Styles Section ********** -->
+  <FinishingStyles
+    id="finishes"
+    tagline="Finishing Options"
+    title="Choose Your <span class='text-brand-red'>Perfect</span> Finish"
+    subtitle="From smooth and elegant to textured and decorative - find the right finish for your project"
+    styles={[
+      {
+        id: 'broom',
+        name: 'Broom',
+        description:
+          'The most popular and practical concrete finish, created by dragging a broom across wet concrete to create subtle texture lines that provide excellent traction.',
+        characteristics: [
+          'Excellent slip resistance',
+          'Hides minor imperfections',
+          'Easy maintenance',
+          'Weather resistant',
+          'Quick installation',
+        ],
+        mainImage: '~/assets/images/finished-driveway-1.jpg',
+        detailImage: '~/assets/images/brushed-cement-closeup.jpg',
+        icon: 'tabler:brush',
+        bestFor: 'Driveways, sidewalks, and high-traffic areas where safety and practicality are important',
+      },
+      {
+        id: 'rosette',
+        name: 'Rosette/Spin',
+        description:
+          'A decorative swirled pattern created by spinning a float in circular motions, producing an elegant rosette or spiral texture that adds visual interest.',
+        characteristics: [
+          'Unique decorative pattern',
+          'Good slip resistance',
+          'Adds visual texture',
+          'Professional appearance',
+          'Skilled application required',
+        ],
+        mainImage: '~/assets/images/spin-finish-driveway.jpg',
+        detailImage: '~/assets/images/rosette-concrete-finish.webp',
+        icon: 'tabler:spiral',
+        bestFor: 'Patios, pool decks, and decorative areas where aesthetics matter as much as function',
+      },
+      {
+        id: 'stamped',
+        name: 'Stamped Concrete',
+        description:
+          'Premium decorative finish that mimics the look of stone, brick, or tile using specialized stamps and color treatments for a high-end appearance.',
+        characteristics: [
+          'Mimics expensive materials',
+          'Wide variety of patterns',
+          'Color options available',
+          'Increases property value',
+          'Durable and long-lasting',
+          'Custom design possibilities',
+        ],
+        mainImage: '~/assets/images/stamped-cement-backyard-patio.jpg',
+        detailImage: '~/assets/images/stamped-concrete-closeup.jpg',
+        icon: 'tabler:rubber-stamp',
+        bestFor: 'Upscale patios, walkways, and areas where you want the look of natural stone or pavers',
+      },
+      {
+        id: 'exposed',
+        name: 'Exposed Aggregate',
+        description:
+          'A textured finish revealing decorative stones and aggregate within the concrete, creating a natural, slip-resistant surface with excellent durability.',
+        characteristics: [
+          'Natural stone appearance',
+          'Superior slip resistance',
+          'Extremely durable',
+          'Low maintenance',
+          'Variety of stone options',
+          'Timeless aesthetic',
+        ],
+        mainImage: '~/assets/images/aggregate-cement-driveway.jpg',
+        detailImage: '~/assets/images/aggregate-concrete-closeup.jpg',
+        icon: 'tabler:wall',
+        bestFor: 'Pool areas, outdoor entertaining spaces, and areas requiring maximum slip resistance',
       },
     ]}
   />
@@ -208,34 +276,34 @@ const metadata = {
         title: 'Modern Residential Driveway',
       },
       {
+        src: '~/assets/images/cement-patio-and-stairs.jpg',
+        alt: 'Concrete leading patio',
+        category: 'Patios',
+        title: 'Concrete Backyard Patio',
+      },
+      {
+        src: '~/assets/images/stamped-cement-backyard-patio.jpg',
+        alt: 'Stamped concrete patio with decorative finish',
+        category: 'Patios',
+        title: 'Stamped Concrete Patio',
+      },
+      {
+        src: '~/assets/images/finished-driveway-1.jpg',
+        alt: 'New residential driveway',
+        category: 'Driveways',
+        title: 'Broom Finished Driveway',
+      },
+      {
+        src: '~/assets/images/spin-finish-driveway.jpg',
+        alt: 'Residential driveway with rosette/spin finish',
+        category: 'Driveways',
+        title: 'Rosette Finish Driveway',
+      },
+      {
         src: '~/assets/images/cement-stairs-to-porch-windsor.jpg',
         alt: 'Stamped concrete patio',
         category: 'Patios',
         title: 'Sharp Stairs and Patio',
-      },
-      {
-        src: '~/assets/images/commercial-cement-dock-windsor.jpg',
-        alt: 'Commercial concrete dock',
-        category: 'Commercial Projects',
-        title: 'Heavy-Duty Commercial Dock',
-      },
-      {
-        src: '~/assets/images/finished-driveway-3.jpg',
-        alt: 'New residential driveway',
-        category: 'Driveways',
-        title: 'Freshly Poured Driveway',
-      },
-      {
-        src: '~/assets/images/finished-driveway-6.jpg',
-        alt: 'Residential driveway with smooth finish',
-        category: 'Driveways',
-        title: 'Smooth Cement Driveway',
-      },
-      {
-        src: '~/assets/images/finished-driveway-5.jpg',
-        alt: 'Residential driveway with decorative finish',
-        category: 'Driveways',
-        title: 'Decorative Driveway Finish',
       },
     ]}
   />

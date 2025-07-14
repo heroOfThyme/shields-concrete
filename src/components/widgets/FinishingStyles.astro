@@ -1,0 +1,325 @@
+---
+import { Icon } from 'astro-icon/components';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Image from '~/components/common/Image.astro';
+import type { Widget } from '~/types';
+
+export interface FinishingStyle {
+  id: string;
+  name: string;
+  description: string;
+  characteristics: string[];
+  mainImage: string | unknown;
+  detailImage: string | unknown;
+  icon: string;
+  bestFor: string;
+  priceNote?: string;
+}
+
+export interface Props extends Widget {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  styles: FinishingStyle[];
+}
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  styles = [],
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-3xl mx-auto text-center mb-16',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-primary',
+      subtitle: 'text-xl md:text-2xl text-muted font-medium relative',
+    }}
+  />
+
+  {/* Tab Navigation */}
+  <div class="flex flex-wrap justify-center mb-12 gap-2 md:gap-4">
+    {
+      styles.map((style, index) => (
+        <button
+          type="button"
+          class={`finishing-tab px-4 md:px-6 py-3 rounded-xl font-bold transition-all duration-300 border-2 ${
+            index === 0
+              ? 'bg-brand-red text-white border-brand-red shadow-lg'
+              : 'bg-white text-slate-600 border-slate-200 hover:border-brand-red hover:text-brand-red'
+          }`}
+          data-tab={style.id}
+          aria-label={`View ${style.name} finishing details`}
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+        >
+          <Icon name={style.icon} class="w-5 h-5 mr-2 inline" />
+          <span class="hidden sm:inline">{style.name}</span>
+          <span class="sm:hidden">{style.name.split(' ')[0]}</span>
+        </button>
+      ))
+    }
+  </div>
+
+  {/* Tab Content */}
+  <div class="finishing-content-wrapper">
+    {
+      styles.map((style, index) => (
+        <div
+          class={`finishing-content ${index === 0 ? 'active' : 'hidden'}`}
+          data-content={style.id}
+          role="tabpanel"
+          aria-labelledby={`tab-${style.id}`}
+        >
+          <div class="grid lg:grid-cols-2 gap-8 items-center">
+            {/* Image Section with Before/After Effect */}
+            <div class="order-1 lg:order-1">
+              <div class="relative bg-slate-100 rounded-2xl overflow-hidden shadow-lg group">
+                {/* Main Project Image */}
+                <div class="image-container relative h-80 md:h-96 overflow-hidden">
+                  <Image
+                    src={
+                      typeof style.mainImage === 'object' && style.mainImage && 'src' in style.mainImage
+                        ? (style.mainImage as { src?: string }).src || ''
+                        : (style.mainImage as string)
+                    }
+                    alt={`${style.name} concrete finishing on completed project`}
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    width={600}
+                    height={400}
+                    loading="lazy"
+                  />
+
+                  {/* Detail Image Overlay - Desktop hover, Mobile tap */}
+                  <div class="detail-overlay absolute inset-0 bg-black bg-opacity-70 opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div class="text-center text-white">
+                      <p class="text-sm font-bold mb-2">TEXTURE CLOSE-UP</p>
+                      <div class="w-48 h-48 mx-auto rounded-xl overflow-hidden border-4 border-white shadow-2xl">
+                        <Image
+                          src={
+                            typeof style.detailImage === 'object' && style.detailImage && 'src' in style.detailImage
+                              ? (style.detailImage as { src?: string }).src || ''
+                              : (style.detailImage as string)
+                          }
+                          alt={`${style.name} texture detail close-up`}
+                          class="w-full h-full object-cover"
+                          width={200}
+                          height={200}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile: Show detail image in a separate section below main image */}
+                  <div class="lg:hidden mt-4">
+                    <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                      <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-sm text-slate-700">Texture Detail</h4>
+                        <Icon name="tabler:zoom-in" class="w-4 h-4 text-slate-500" />
+                      </div>
+                      <div class="w-24 h-24 mx-auto rounded-lg overflow-hidden border-2 border-slate-200">
+                        <Image
+                          src={
+                            typeof style.detailImage === 'object' && style.detailImage && 'src' in style.detailImage
+                              ? (style.detailImage as { src?: string }).src || ''
+                              : (style.detailImage as string)
+                          }
+                          alt={`${style.name} texture detail close-up`}
+                          class="w-full h-full object-cover"
+                          width={100}
+                          height={100}
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image Footer */}
+                <div class="absolute bottom-4 left-4 right-4">
+                  <div class="bg-white bg-opacity-90 rounded-lg px-4 py-2 backdrop-blur-sm">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-sm text-slate-700">{style.name} Finish</span>
+                      <span class="text-xs text-slate-500 hidden lg:block">Hover for detail</span>
+                      <span class="text-xs text-slate-500 lg:hidden">Detail below</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div class="order-2 lg:order-2 space-y-6">
+              {/* Header */}
+              <div>
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-brand-red rounded-xl flex items-center justify-center mr-4">
+                    <Icon name={style.icon} class="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-primary">{style.name}</h3>
+                    {style.priceNote && <p class="text-sm font-bold text-brand-red">{style.priceNote}</p>}
+                  </div>
+                </div>
+                <p class="text-lg text-body leading-relaxed">{style.description}</p>
+              </div>
+
+              {/* Best For Section */}
+              <div class="bg-page-light border border-light rounded-xl p-4">
+                <div class="flex items-center mb-2">
+                  <Icon name="tabler:target" class="w-5 h-5 mr-2 text-brand-red" />
+                  <h4 class="font-bold text-primary">Best For:</h4>
+                </div>
+                <p class="text-body">{style.bestFor}</p>
+              </div>
+
+              {/* Characteristics */}
+              <div>
+                <h4 class="font-bold text-primary mb-4 flex items-center">
+                  <Icon name="tabler:list-check" class="w-5 h-5 mr-2 text-brand-red" />
+                  Key Features:
+                </h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {style.characteristics.map((characteristic) => (
+                    <div class="flex items-start">
+                      <Icon name="tabler:check" class="w-4 h-4 mr-2 mt-0.5 text-brand-red flex-shrink-0" />
+                      <span class="text-body text-sm leading-relaxed">{characteristic}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* CTA */}
+              <div class="pt-4">
+                <a
+                  href="#contact"
+                  class="inline-flex items-center justify-center bg-brand-red hover:bg-secondary text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 hover:shadow-lg group"
+                  aria-label={`Get a quote for ${style.name} finishing`}
+                >
+                  Get This Finish
+                  <Icon
+                    name="tabler:arrow-right"
+                    class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Bottom CTA */}
+  <div class="mt-16 text-center bg-page-light rounded-2xl p-8 border border-light">
+    <div class="max-w-2xl mx-auto">
+      <h3 class="text-2xl md:text-3xl font-bold text-primary mb-4">Can't Decide on the Right Finish?</h3>
+      <p class="text-body mb-6 text-lg">
+        Our team will help you choose the perfect concrete finish based on your project needs, style preferences, and
+        budget.
+      </p>
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center text-white font-bold py-4 px-8 rounded-xl transition-all duration-200 hover:shadow-lg bg-brand-red hover:bg-secondary"
+        aria-label="Contact us for finishing consultation"
+      >
+        <Icon name="tabler:phone" class="w-5 h-5 mr-2" />
+        Get Expert Advice
+      </a>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<script>
+  function initFinishingTabs() {
+    const tabs = document.querySelectorAll('.finishing-tab');
+    const contents = document.querySelectorAll('.finishing-content');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-tab');
+
+        // Update tabs
+        tabs.forEach((t) => {
+          t.classList.remove('bg-brand-red', 'text-white', 'border-brand-red', 'shadow-lg');
+          t.classList.add('bg-white', 'text-slate-600', 'border-slate-200');
+          t.setAttribute('aria-selected', 'false');
+        });
+
+        tab.classList.add('bg-brand-red', 'text-white', 'border-brand-red', 'shadow-lg');
+        tab.classList.remove('bg-white', 'text-slate-600', 'border-slate-200');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Update content
+        contents.forEach((content) => {
+          content.classList.add('hidden');
+          content.classList.remove('active');
+        });
+
+        const targetContent = document.querySelector(`[data-content="${targetId}"]`);
+        if (targetContent) {
+          targetContent.classList.remove('hidden');
+          targetContent.classList.add('active');
+        }
+      });
+    });
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initFinishingTabs);
+
+  // Re-initialize after Astro page transitions
+  document.addEventListener('astro:after-swap', initFinishingTabs);
+</script>
+
+<style>
+  /* Smooth transitions for tab content */
+  .finishing-content {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .finishing-content.active {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Enhanced hover effects */
+  .image-container:hover .detail-overlay {
+    opacity: 1;
+  }
+
+  /* Mobile: Always show detail image below main image */
+  @media (max-width: 1023px) {
+    .detail-overlay {
+      display: none;
+    }
+  }
+
+  .finishing-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+</style>
