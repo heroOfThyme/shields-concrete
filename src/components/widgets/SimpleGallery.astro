@@ -38,9 +38,9 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline 
-    title={title} 
-    subtitle={subtitle} 
+  <Headline
+    title={title}
+    subtitle={subtitle}
     tagline={tagline}
     classes={{
       container: 'max-w-3xl mx-auto text-center mb-16',
@@ -53,7 +53,7 @@ const {
   <div id="gallery-grid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
     {
       images.map((project, index) => (
-        <div 
+        <div
           class={`gallery-item relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-slate-100 dark:bg-slate-800 intersect-once motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade intersect-quarter ${index >= initialCount ? 'hidden' : ''}`}
           data-index={index}
         >
@@ -61,11 +61,12 @@ const {
             <Image
               src={project.src}
               alt={project.alt}
-              class="w-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
+              class="w-full rounded-xl object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
               width={400}
               height={300}
-              aspectRatio="4:3"
+              widths={[400, 768]}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              layout="responsive"
               loading={index < initialCount ? 'eager' : 'lazy'}
               decoding="async"
             />
@@ -75,13 +76,11 @@ const {
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div class="absolute bottom-0 left-0 right-0 p-4">
                 {project.category && (
-                  <span class="inline-block px-3 py-1 text-white text-sm font-semibold rounded-full mb-2 border border-white/30 bg-red-600/20">
+                  <span class="inline-block px-3 py-1 text-white text-sm font-semibold rounded-full mb-2 border border-white/30 backdrop-blur-sm bg-white/20">
                     {project.category}
                   </span>
                 )}
-                {project.title && (
-                  <h3 class="text-white font-bold text-lg">{project.title}</h3>
-                )}
+                {project.title && <h3 class="text-white font-bold text-lg">{project.title}</h3>}
               </div>
             </div>
           )}
@@ -90,22 +89,23 @@ const {
     }
   </div>
 
-  <!-- Load More Button -->
-  {images.length > initialCount && (
-    <div class="text-center mt-12">
-      <Button
-        id="load-more-btn"
-        variant="primary"
-        class="px-8 py-3 font-bold"
-        text="Load More Projects"
-      />
-      
-      <!-- Hidden counter to track current count -->
-      <span id="current-count" class="hidden">{initialCount}</span>
-      <span id="load-count" class="hidden">{loadMoreCount}</span>
-      <span id="total-count" class="hidden">{images.length}</span>
-    </div>
-  )}
+  {
+    images.length > initialCount && (
+      <div class="text-center mt-12">
+        <Button id="load-more-btn" variant="primary" class="px-8 py-3 font-bold" text="Load More Projects" />
+
+        <span id="current-count" class="hidden">
+          {initialCount}
+        </span>
+        <span id="load-count" class="hidden">
+          {loadMoreCount}
+        </span>
+        <span id="total-count" class="hidden">
+          {images.length}
+        </span>
+      </div>
+    )
+  }
 </WidgetWrapper>
 
 <script>
@@ -114,37 +114,38 @@ const {
     const currentCountEl = document.getElementById('current-count');
     const loadCountEl = document.getElementById('load-count');
     const totalCountEl = document.getElementById('total-count');
-    
+
     if (!loadMoreBtn || !currentCountEl || !loadCountEl || !totalCountEl) return;
-    
+
     let currentCount = parseInt(currentCountEl.textContent || '0');
     const loadCount = parseInt(loadCountEl.textContent || '0');
     const totalCount = parseInt(totalCountEl.textContent || '0');
-    
-    loadMoreBtn.addEventListener('click', function() {
+
+    loadMoreBtn.addEventListener('click', function () {
       const galleryItems = document.querySelectorAll('.gallery-item');
       const nextCount = Math.min(currentCount + loadCount, totalCount);
-      
-      // Show the next batch of images
+
       for (let i = currentCount; i < nextCount; i++) {
         const item = galleryItems[i];
         if (item) {
           item.classList.remove('hidden');
-          // Trigger animation
           setTimeout(() => {
-            item.classList.add('intersect-once', 'motion-safe:md:opacity-0', 'motion-safe:md:intersect:animate-fade', 'intersect-quarter');
+            item.classList.add(
+              'intersect-once',
+              'motion-safe:md:opacity-0',
+              'motion-safe:md:intersect:animate-fade',
+              'intersect-quarter'
+            );
           }, 100);
         }
       }
-      
+
       currentCount = nextCount;
       currentCountEl.textContent = currentCount.toString();
-      
-      // Hide button if all images are shown
+
       if (currentCount >= totalCount) {
         loadMoreBtn.style.display = 'none';
       } else {
-        // Update button text with remaining count
         const remaining = totalCount - currentCount;
         const nextBatch = Math.min(loadCount, remaining);
         const span = loadMoreBtn.querySelector('span');
@@ -154,10 +155,8 @@ const {
       }
     });
   }
-  
-  // Initialize on page load
+
   document.addEventListener('DOMContentLoaded', initializeGallery);
-  
-  // Re-initialize after Astro page transitions
+
   document.addEventListener('astro:after-swap', initializeGallery);
 </script>
