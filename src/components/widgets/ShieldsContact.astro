@@ -1,7 +1,6 @@
 ---
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
-import Button from '~/components/ui/Button.astro';
 import { Icon } from 'astro-icon/components';
 import type { Widget } from '~/types';
 
@@ -37,10 +36,30 @@ const {
 
   <div class="grid lg:grid-cols-2 gap-12 items-start">
     <!-- Contact Form -->
-    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl shadow-sm p-8 border border-slate-100 dark:border-slate-700">
-      <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">What Can We Do For You?</h3>
+    <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border border-slate-200 dark:border-slate-700">
+      <div class="text-center mb-8">
+        <div class="w-12 h-12 bg-brand-red rounded-xl flex items-center justify-center mx-auto mb-4">
+          <Icon name="tabler:message-circle" class="w-6 h-6 text-white" />
+        </div>
+        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">What Can We Do For You?</h3>
+        <div class="w-16 h-1 bg-brand-red rounded-full mx-auto"></div>
+      </div>
 
-      <form class="space-y-6" action="#" method="POST">
+      <form 
+        name="contact" 
+        method="POST" 
+        data-netlify="true" 
+        netlify-honeypot="bot-field"
+        class="space-y-6"
+        id="contact-form"
+      >
+        <!-- Netlify form detection -->
+        <input type="hidden" name="form-name" value="contact" />
+        <!-- Honeypot field for spam protection -->
+        <p class="hidden">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label for="firstName" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
@@ -51,10 +70,10 @@ const {
               id="firstName"
               name="firstName"
               required
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
-              style="focus:ring-color: var(--aw-color-primary);"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200"
               placeholder="John"
             />
+            <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
           </div>
           <div>
             <label for="lastName" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
@@ -65,10 +84,10 @@ const {
               id="lastName"
               name="lastName"
               required
-              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
-              style="focus:ring-color: var(--aw-color-primary);"
+              class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200"
               placeholder="Smith"
             />
+            <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
           </div>
         </div>
 
@@ -81,10 +100,10 @@ const {
             id="email"
             name="email"
             required
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
-            style="focus:ring-color: var(--aw-color-primary);"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200"
             placeholder="john@example.com"
           />
+          <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
         </div>
 
         <div>
@@ -95,10 +114,10 @@ const {
             type="tel"
             id="phone"
             name="phone"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
-            style="focus:ring-color: var(--aw-color-primary);"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200"
             placeholder="(226) 123-4567"
           />
+          <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
         </div>
 
         <div>
@@ -109,8 +128,7 @@ const {
             id="projectType"
             name="projectType"
             required
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200"
-            style="focus:ring-color: var(--aw-color-primary);"
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200"
           >
             <option value="">Select a service...</option>
             <option value="driveway">Driveway</option>
@@ -119,8 +137,10 @@ const {
             <option value="porch">Porch</option>
             <option value="garage">Garage Floor</option>
             <option value="basement">Basement Floor</option>
+            <option value="commercial">Commercial Project</option>
             <option value="other">Other</option>
           </select>
+          <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
         </div>
 
         <div>
@@ -131,28 +151,35 @@ const {
             id="message"
             name="message"
             rows="4"
-            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:ring-2 focus:border-transparent transition-all duration-200 resize-vertical"
-            style="focus:ring-color: var(--aw-color-primary);"
-            placeholder="Tell us about your project - size, timeline, specific requirements..."></textarea>
+            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200 resize-vertical"
+            placeholder="Tell us about your project - size, timeline, specific requirements..."
+          ></textarea>
+          <span class="character-count text-slate-500 text-xs mt-1">0 / 1000 characters</span>
+          <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
         </div>
 
-        <Button
+        <button
           type="submit"
-          variant="primary"
-          class="w-full font-bold py-4 px-6 transition-all duration-200 shadow-sm hover:shadow-md group"
-          style="background-color: var(--aw-color-primary); border-color: var(--aw-color-primary);"
-          onmouseover="this.style.backgroundColor='var(--aw-color-secondary)'; this.style.borderColor='var(--aw-color-secondary)';"
-          onmouseout="this.style.backgroundColor='var(--aw-color-primary)'; this.style.borderColor='var(--aw-color-primary)';"
+          id="submit-btn"
+          class="w-full bg-brand-red hover:bg-secondary text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-red-200"
         >
-          Send Message
-          <Icon
-            name="tabler:send"
-            class="w-5 h-5 ml-2 inline group-hover:translate-x-1 transition-transform duration-200"
-          />
-        </Button>
+          <span class="submit-text flex items-center justify-center">
+            Send Message
+            <Icon name="tabler:send" class="w-5 h-5 ml-2" />
+          </span>
+          
+          <span class="loading-spinner hidden flex items-center justify-center">
+            <Icon name="tabler:loader" class="w-5 h-5 animate-spin mr-2" />
+            Sending...
+          </span>
+        </button>
+
+        <!-- Success/Error Messages -->
+        <div id="form-message" class="hidden p-4 rounded-xl text-center font-medium"></div>
 
         <p class="text-sm text-slate-600 dark:text-slate-400 text-center">
-          We usually respond within 24 hours. If you need immediate assistance, please call us directly.
+          We usually respond within 24 hours. If you need immediate assistance, please call us directly at 
+          <a href="tel:2263504642" class="text-brand-red font-bold hover:underline">(226) 350-4642</a>.
         </p>
       </form>
     </div>
@@ -161,26 +188,26 @@ const {
     <div class="space-y-8">
       <!-- Primary Contact -->
       <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-8 border border-slate-100 dark:border-slate-700">
-        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">Get In Touch</h3>
+        <div class="text-center mb-8">
+          <div class="w-12 h-12 bg-brand-red rounded-xl flex items-center justify-center mx-auto mb-4">
+            <Icon name="tabler:phone-call" class="w-6 h-6 text-white" />
+          </div>
+          <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Get In Touch</h3>
+          <div class="w-16 h-1 bg-brand-red rounded-full mx-auto"></div>
+        </div>
 
         <div class="space-y-6">
           <!-- Phone -->
           <div class="flex items-start">
-            <div class="flex-shrink-0">
-              <div
-                class="w-12 h-12 rounded-xl flex items-center justify-center"
-                style="background-color: var(--aw-color-primary);"
-              >
-                <Icon name="tabler:phone" class="w-6 h-6 text-white" />
-              </div>
+            <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-4">
+              <Icon name="tabler:phone" class="w-5 h-5 text-white" />
             </div>
-            <div class="ml-4">
+            <div>
               <h4 class="text-lg font-bold text-slate-900 dark:text-white">Call Us</h4>
               <p class="text-slate-600 dark:text-slate-300 mt-1">Talk to us directly.</p>
               <a
                 href="tel:2263504642"
-                class="text-2xl font-black hover:underline transition-all duration-200 mt-2 block"
-                style="color: var(--aw-color-primary);"
+                class="text-2xl font-black text-brand-red hover:text-secondary hover:underline transition-colors duration-200 mt-2 block"
               >
                 (226) 350-4642
               </a>
@@ -189,95 +216,56 @@ const {
 
           <!-- Email -->
           <div class="flex items-start">
-            <div class="flex-shrink-0">
-              <div
-                class="w-12 h-12 rounded-xl flex items-center justify-center"
-                style="background-color: var(--aw-color-primary);"
-              >
-                <Icon name="tabler:mail" class="w-6 h-6 text-white" />
-              </div>
+            <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-4">
+              <Icon name="tabler:mail" class="w-5 h-5 text-white" />
             </div>
-            <div class="ml-4">
+            <div>
               <h4 class="text-lg font-bold text-slate-900 dark:text-white">Email Us</h4>
               <p class="text-slate-600 dark:text-slate-300 mt-1">Directly reach our inbox.</p>
               <a
-                href="mailto:info@shieldscement.ca"
-                class="text-lg font-bold hover:underline transition-all duration-200 mt-2 block"
-                style="color: var(--aw-color-primary);"
+                href="mailto:shieldscement@outlook.com"
+                class="text-lg font-bold text-brand-red hover:text-secondary hover:underline transition-colors duration-200 mt-2 block"
               >
-                info@shieldscement.ca
+                shieldscement@outlook.com
               </a>
             </div>
           </div>
 
           <!-- Service Area -->
           <div class="flex items-start">
-            <div class="flex-shrink-0">
-              <div
-                class="w-12 h-12 rounded-xl flex items-center justify-center"
-                style="background-color: var(--aw-color-primary);"
-              >
-                <Icon name="tabler:map-pin" class="w-6 h-6 text-white" />
-              </div>
+            <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-4">
+              <Icon name="tabler:map-pin" class="w-5 h-5 text-white" />
             </div>
-            <div class="ml-4">
+            <div>
               <h4 class="text-lg font-bold text-slate-900 dark:text-white">Service Area</h4>
               <p class="text-slate-600 dark:text-slate-300 mt-1 mb-3">Professional services throughout:</p>
-              <ul class="space-y-2 text-slate-600 dark:text-slate-300">
+              <ul class="space-y-1 text-slate-600 dark:text-slate-300">
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span class="font-medium">Windsor, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>LaSalle, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>Kingsville, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>Amherstburg, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>Belle River, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>Tilbury, ON</span>
                 </li>
                 <li class="flex items-center">
-                  <Icon
-                    name="tabler:check"
-                    class="w-4 h-4 mr-2 flex-shrink-0"
-                    style="color: var(--aw-color-primary);"
-                  />
+                  <Icon name="tabler:check" class="w-4 h-4 mr-2 text-brand-red" />
                   <span>Harrow, Essex, ON</span>
                 </li>
               </ul>
@@ -288,7 +276,12 @@ const {
 
       <!-- Hours -->
       <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-100 dark:border-slate-700">
-        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Business Hours</h4>
+        <div class="flex items-center mb-4">
+          <div class="w-8 h-8 bg-brand-red rounded-lg flex items-center justify-center mr-3">
+            <Icon name="tabler:clock" class="w-5 h-5 text-white" />
+          </div>
+          <h4 class="text-lg font-bold text-slate-900 dark:text-white">Business Hours</h4>
+        </div>
         <div class="space-y-2 text-slate-600 dark:text-slate-300">
           <div class="flex justify-between">
             <span>Monday - Friday:</span>
@@ -300,10 +293,160 @@ const {
           </div>
           <div class="flex justify-between">
             <span>Sunday:</span>
-            <span class="font-bold">Closed</span>
+            <span class="font-bold text-slate-400">Closed</span>
           </div>
         </div>
       </div>
     </div>
   </div>
 </WidgetWrapper>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const formMessage = document.getElementById('form-message') as HTMLDivElement;
+    const messageTextarea = document.getElementById('message') as HTMLTextAreaElement;
+    const characterCount = document.querySelector('.character-count') as HTMLSpanElement;
+    
+    if (!form || !submitBtn || !formMessage) return;
+
+    // Character counter for message textarea
+    if (messageTextarea && characterCount) {
+      messageTextarea.addEventListener('input', function() {
+        const count = this.value.length;
+        characterCount.textContent = `${count} / 1000 characters`;
+        
+        if (count > 950) {
+          characterCount.classList.add('text-brand-red');
+        } else {
+          characterCount.classList.remove('text-brand-red');
+        }
+      });
+    }
+
+    // Simple validation
+    function validateField(field: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) {
+      const errorMessage = field.parentElement?.querySelector('.error-message') as HTMLSpanElement;
+      let isValid = true;
+      let message = '';
+
+      // Clear previous validation
+      field.classList.remove('border-red-500');
+      if (errorMessage) {
+        errorMessage.classList.add('hidden');
+        errorMessage.textContent = '';
+      }
+
+      // Required field validation
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        isValid = false;
+        message = 'This field is required.';
+      }
+      
+      // Email validation
+      else if (field.type === 'email' && field.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+          isValid = false;
+          message = 'Please enter a valid email address.';
+        }
+      }
+
+      // Show error if invalid
+      if (!isValid) {
+        field.classList.add('border-red-500');
+        if (errorMessage) {
+          errorMessage.textContent = message;
+          errorMessage.classList.remove('hidden');
+        }
+      }
+
+      return isValid;
+    }
+
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Validate required fields
+      const requiredFields = form.querySelectorAll('[required]') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
+      let isFormValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!validateField(field)) {
+          isFormValid = false;
+        }
+      });
+
+      if (!isFormValid) {
+        showMessage('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      // Show loading state
+      setLoadingState(true);
+
+      try {
+        const formData = new FormData(form);
+        
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData as never).toString()
+        });
+
+        if (response.ok) {
+          showMessage('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+          form.reset();
+          if (characterCount) {
+            characterCount.textContent = '0 / 1000 characters';
+          }
+        } else {
+          throw new Error('Network response was not ok');
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showMessage('Sorry, there was an error sending your message. Please try calling us directly at (226) 350-4642.', 'error');
+      } finally {
+        setLoadingState(false);
+      }
+    });
+
+    function setLoadingState(isLoading: boolean) {
+      const submitText = submitBtn.querySelector('.submit-text') as HTMLSpanElement;
+      const loadingSpinner = submitBtn.querySelector('.loading-spinner') as HTMLSpanElement;
+      
+      if (isLoading) {
+        submitBtn.disabled = true;
+        submitText.classList.add('hidden');
+        loadingSpinner.classList.remove('hidden');
+      } else {
+        submitBtn.disabled = false;
+        submitText.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+      }
+    }
+
+    function showMessage(message: string, type: 'success' | 'error') {
+      formMessage.textContent = message;
+      formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+      
+      if (type === 'success') {
+        formMessage.classList.add('bg-green-100', 'text-green-800');
+      } else {
+        formMessage.classList.add('bg-red-100', 'text-red-800');
+      }
+      
+      setTimeout(() => {
+        formMessage.classList.add('hidden');
+      }, 8000);
+    }
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', initContactForm);
+  
+  // Re-initialize after Astro page transitions
+  document.addEventListener('astro:after-swap', initContactForm);
+</script>

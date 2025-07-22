@@ -19,7 +19,16 @@ const {
 ---
 
 <WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={{
+      container: 'max-w-3xl mx-auto text-center mb-16',
+      title: 'text-4xl md:text-5xl font-black tracking-tight mb-6 font-heading text-primary',
+      subtitle: 'text-xl md:text-2xl text-muted font-medium relative',
+    }}
+  />
   <ItemGrid
     items={items}
     columns={columns}
@@ -27,7 +36,9 @@ const {
     classes={{
       container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
       panel: 'max-w-none',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-primary',
+      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-brand-red',
+      title: 'text-xl font-bold text-primary mb-3',
+      description: 'text-body leading-relaxed',
     }}
   />
 </WidgetWrapper>
