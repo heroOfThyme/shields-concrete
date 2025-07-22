@@ -11,6 +11,7 @@ import SimpleGallery from '~/components/widgets/SimpleGallery.astro';
 import ShieldsContact from '~/components/widgets/ShieldsContact.astro';
 import Image from '~/components/common/Image.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
   title: 'Concrete Contractor Windsor | Driveways, Patios & More | Shields Cement',
@@ -54,7 +55,7 @@ const metadata = {
         alt="cement texture background"
         class="absolute inset-0 w-full h-full object-cover z-0"
       />
-      <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+      <div class="absolute inset-0 bg-black opacity-65 z-10"></div>
     </Fragment>
   </Hero2>
 
@@ -69,34 +70,87 @@ const metadata = {
       src: '~/assets/images/finished-driveway-7.jpg',
       alt: 'Tristan Shields working on concrete project',
     }}
-    items={[
-      {
-        title: 'Licensed & Insured',
-        description: 'Fully licensed and insured for your peace of mind.',
-        icon: 'tabler:shield-check',
-      },
-      {
-        title: 'Quality Workmanship',
-        description: 'We take pride in delivering top-notch concrete solutions.',
-        icon: 'tabler:home-check',
-      },
-      {
-        title: 'Professional Installation',
-        description: 'Proper techniques and materials every single time.',
-        icon: 'tabler:tools',
-      },
-    ]}
   >
     <Fragment slot="content">
-      <h3 class="md:text-4xl text-2xl font-bold mb-2 font-heading">Your Local concrete Experts</h3>
       <p class="text-lg mb-4">
-        For over 15 years, Shields Cement has been Windsor's go-to concrete contractor for residential and commercial
-        projects. Founded by Tristan Shields, our company has built a reputation for delivering exceptional concrete
-        work that stands the test of time. We specialize in all aspects of concrete installation, from residential
-        driveways and patios to commercial foundations and industrial flooring.
+        Shields Cement is a leading concrete contractor in Windsor, renowned for delivering superior residential and
+        commercial concrete solutions. We've established a strong reputation for exceptional workmanship that ensures
+        lasting durability. Our expertise spans all facets of concrete installation, including residential driveways and
+        patios, commercial foundations, and industrial flooring.
+      </p>
+      <p class="text-lg mb-4">
+        We are committed to exceeding customer expectations and ensuring complete satisfaction with every project we
+        undertake. At Shields Cement, we utilize cutting-edge techniques and high-quality materials to guarantee
+        precision and longevity in every pour. Our skilled team is adept at managing projects of any scale, consistently
+        adhering to strict timelines and budgets. We pride ourselves on clear communication, transparency, and a
+        customer-centric approach, making us a trusted partner for all your concrete needs in the Windsor area.
       </p>
     </Fragment>
   </Content>
+  
+  <!-- Key Features Section **************** -->
+  <section class="relative not-prose scroll-mt-[72px]" aria-labelledby="key-features-heading">
+    <div class="absolute inset-0 pointer-events-none -z-[1]" aria-hidden="true"></div>
+    <div
+      class="relative mx-auto max-w-7xl px-4 md:px-6 py-12 md:py-16 lg:py-20 text-default intersect-once intersect-quarter intercept-no-queue motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+    >
+      <!-- Screen reader heading for section context -->
+      <h2 id="key-features-heading" class="sr-only">Our Key Features and Qualifications</h2>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Licensed & Insured -->
+        <div class="text-center group">
+          <div
+            class="flex items-center justify-center mx-auto mb-6"
+            role="img"
+            aria-label="Licensed and insured certification"
+          >
+            <div
+              class="w-16 h-16 rounded-xl flex items-center justify-center bg-brand-red group-hover:bg-secondary transition-colors duration-200 shadow-sm"
+            >
+              <Icon name="tabler:shield-check" class="w-8 h-8 text-white" aria-hidden="true" />
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-3 font-heading">Licensed & Insured</h3>
+          <p class="text-body leading-relaxed">Fully licensed and insured for your peace of mind.</p>
+        </div>
+
+        <!-- Quality Workmanship -->
+        <div class="text-center group">
+          <div
+            class="flex items-center justify-center mx-auto mb-6"
+            role="img"
+            aria-label="Quality workmanship guarantee"
+          >
+            <div
+              class="w-16 h-16 rounded-xl flex items-center justify-center bg-brand-red group-hover:bg-secondary transition-colors duration-200 shadow-sm"
+            >
+              <Icon name="tabler:home-check" class="w-8 h-8 text-white" aria-hidden="true" />
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-3 font-heading">Quality Workmanship</h3>
+          <p class="text-body leading-relaxed">We take pride in delivering top-notch concrete solutions.</p>
+        </div>
+
+        <!-- Professional Installation -->
+        <div class="text-center group sm:col-span-2 lg:col-span-1 mx-auto max-w-sm lg:max-w-none">
+          <div
+            class="flex items-center justify-center mx-auto mb-6"
+            role="img"
+            aria-label="Professional installation process"
+          >
+            <div
+              class="w-16 h-16 rounded-xl flex items-center justify-center bg-brand-red group-hover:bg-secondary transition-colors duration-200 shadow-sm"
+            >
+              <Icon name="tabler:tools" class="w-8 h-8 text-white" aria-hidden="true" />
+            </div>
+          </div>
+          <h3 class="text-xl font-bold text-primary mb-3 font-heading">Professional Installation</h3>
+          <p class="text-body leading-relaxed">Proper techniques and materials every single time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <CallToAction
     tagline="Ready to Start?"
