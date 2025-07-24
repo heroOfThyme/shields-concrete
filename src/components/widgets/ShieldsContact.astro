@@ -45,10 +45,10 @@ const {
         <div class="w-16 h-1 bg-brand-red rounded-full mx-auto"></div>
       </div>
 
-      <form 
-        name="contact" 
-        method="POST" 
-        data-netlify="true" 
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
         netlify-honeypot="bot-field"
         class="space-y-6"
         id="contact-form"
@@ -152,8 +152,7 @@ const {
             name="message"
             rows="4"
             class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-white focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-colors duration-200 resize-vertical"
-            placeholder="Tell us about your project - size, timeline, specific requirements..."
-          ></textarea>
+            placeholder="Tell us about your project - size, timeline, specific requirements..."></textarea>
           <span class="character-count text-slate-500 text-xs mt-1">0 / 1000 characters</span>
           <span class="error-message text-brand-red text-sm mt-1 hidden"></span>
         </div>
@@ -167,7 +166,7 @@ const {
             Send Message
             <Icon name="tabler:send" class="w-5 h-5 ml-2" />
           </span>
-          
+
           <span class="loading-spinner hidden flex items-center justify-center">
             <Icon name="tabler:loader" class="w-5 h-5 animate-spin mr-2" />
             Sending...
@@ -176,11 +175,6 @@ const {
 
         <!-- Success/Error Messages -->
         <div id="form-message" class="hidden p-4 rounded-xl text-center font-medium"></div>
-
-        <p class="text-sm text-slate-600 dark:text-slate-400 text-center">
-          We usually respond within 24 hours. If you need immediate assistance, please call us directly at 
-          <a href="tel:2263504642" class="text-brand-red font-bold hover:underline">(226) 350-4642</a>.
-        </p>
       </form>
     </div>
 
@@ -308,15 +302,15 @@ const {
     const formMessage = document.getElementById('form-message') as HTMLDivElement;
     const messageTextarea = document.getElementById('message') as HTMLTextAreaElement;
     const characterCount = document.querySelector('.character-count') as HTMLSpanElement;
-    
+
     if (!form || !submitBtn || !formMessage) return;
 
     // Character counter for message textarea
     if (messageTextarea && characterCount) {
-      messageTextarea.addEventListener('input', function() {
+      messageTextarea.addEventListener('input', function () {
         const count = this.value.length;
         characterCount.textContent = `${count} / 1000 characters`;
-        
+
         if (count > 950) {
           characterCount.classList.add('text-brand-red');
         } else {
@@ -343,7 +337,7 @@ const {
         isValid = false;
         message = 'This field is required.';
       }
-      
+
       // Email validation
       else if (field.type === 'email' && field.value) {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -366,14 +360,14 @@ const {
     }
 
     // Form submission
-    form.addEventListener('submit', async function(e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
       // Validate required fields
       const requiredFields = form.querySelectorAll('[required]') as NodeListOf<HTMLInputElement | HTMLSelectElement>;
       let isFormValid = true;
-      
-      requiredFields.forEach(field => {
+
+      requiredFields.forEach((field) => {
         if (!validateField(field)) {
           isFormValid = false;
         }
@@ -389,15 +383,18 @@ const {
 
       try {
         const formData = new FormData(form);
-        
+
         const response = await fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData as never).toString()
+          body: new URLSearchParams(formData as never).toString(),
         });
 
         if (response.ok) {
-          showMessage('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.', 'success');
+          showMessage(
+            "Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.",
+            'success'
+          );
           form.reset();
           if (characterCount) {
             characterCount.textContent = '0 / 1000 characters';
@@ -407,7 +404,10 @@ const {
         }
       } catch (error) {
         console.error('Form submission error:', error);
-        showMessage('Sorry, there was an error sending your message. Please try calling us directly at (226) 350-4642.', 'error');
+        showMessage(
+          'Sorry, there was an error sending your message. Please try calling us directly at (226) 350-4642.',
+          'error'
+        );
       } finally {
         setLoadingState(false);
       }
@@ -416,7 +416,7 @@ const {
     function setLoadingState(isLoading: boolean) {
       const submitText = submitBtn.querySelector('.submit-text') as HTMLSpanElement;
       const loadingSpinner = submitBtn.querySelector('.loading-spinner') as HTMLSpanElement;
-      
+
       if (isLoading) {
         submitBtn.disabled = true;
         submitText.classList.add('hidden');
@@ -431,13 +431,13 @@ const {
     function showMessage(message: string, type: 'success' | 'error') {
       formMessage.textContent = message;
       formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
-      
+
       if (type === 'success') {
         formMessage.classList.add('bg-green-100', 'text-green-800');
       } else {
         formMessage.classList.add('bg-red-100', 'text-red-800');
       }
-      
+
       setTimeout(() => {
         formMessage.classList.add('hidden');
       }, 8000);
@@ -446,7 +446,7 @@ const {
 
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', initContactForm);
-  
+
   // Re-initialize after Astro page transitions
   document.addEventListener('astro:after-swap', initContactForm);
 </script>

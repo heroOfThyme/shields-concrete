@@ -4,23 +4,23 @@ export const headerData = {
   links: [
     {
       text: 'Home',
-      href: getPermalink('#home'),
+      href: getPermalink('/#home'),
     },
     {
       text: 'About',
-      href: getPermalink('#about'),
+      href: getPermalink('/#about'),
     },
     {
       text: 'Services',
-      href: getPermalink('#services'),
+      href: getPermalink('/#services'),
     },
     {
       text: 'Projects',
-      href: getPermalink('#projects'),
+      href: getPermalink('/#projects'),
     },
     {
       text: 'Contact',
-      href: getPermalink('#contact'),
+      href: getPermalink('/#contact'),
     },
   ],
   actions: [{ text: 'Call (226) 350-4642', href: 'tel:2263504642', variant: 'primary' }],
@@ -29,15 +29,13 @@ export const headerData = {
 export const footerData = {
   links: [
     {
-      title: 'Product',
+      title: 'Quick Links',
       links: [
-        { text: 'Features', href: '#' },
-        { text: 'Security', href: '#' },
-        { text: 'Team', href: '#' },
-        { text: 'Enterprise', href: '#' },
-        { text: 'Customer stories', href: '#' },
-        { text: 'Pricing', href: '#' },
-        { text: 'Resources', href: '#' },
+        { text: 'Home', href: '/#home' },
+        { text: 'About', href: '/#about' },
+        { text: 'Services', href: '/#services' },
+        { text: 'Projects', href: '/#projects' },
+        { text: 'Contact', href: '/#contact' },
       ],
     },
   ],

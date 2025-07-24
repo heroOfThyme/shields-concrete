@@ -189,5 +189,5 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 If you have any questions about this Privacy Policy, You can contact us:
 
 - By phone: (226) 350-4642
-- By email: info@shieldsconcrete.ca
+- By email: shieldscement@outlook.com
 - By mail: Shields Concrete Inc., Windsor, Ontario, Canada

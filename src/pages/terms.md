@@ -118,4 +118,4 @@ By continuing to access or use Our Service after those revisions become effectiv
 If you have any questions about these Terms and Conditions, You can contact us:
 
 - By phone: (226) 350-4642
-- By email: info@shieldsconcrete.ca
+- By email: shieldscement@outlook.com
